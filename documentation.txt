@@ -1,0 +1,37 @@
+********************************************************************************
+*                                                                              *
+*                       Application Details                                    *
+*                                                                              *
+********************************************************************************
+
+
+App Details:
+------------
+- Company
+- Job Title
+- Description
+- Location
+- Date Applied
+- Listed Compensation
+- Site Found
+- Site Applied
+- Cover Letter
+
+Follow up:
+----------
+- Result
+  -- Rejection
+  -- Phone Screen
+  -- Interview
+  -- Other position recommended
+  -- Offer
+- Contact Person
+  -- Info
+- Date
+
+Next Step:
+----------
+- Phone Screen
+- Interview
+- Other position recommended
+- Offer
