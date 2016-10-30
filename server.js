@@ -3,6 +3,7 @@ let app = express();
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let port = 8080;
+let job = require('./app/routes/job');
 
 //db connection
 mongoose.connect('mongodb://localhost/jobster-t');
@@ -25,9 +26,9 @@ app.route('/job')
    .post(job.postJob);
 
 app.route('/job/:id')
-   .get(Job.getJob)
-   .delete(Job.deleteJob)
-   .put(Job.updateJob);
+   .get(job.getJob)
+   .delete(job.deleteJob)
+   .put(job.updateJob);
 
 
 

@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-let Job = require('./model/job');
+let Job = require('../model/job');
 
 
 function getJobs(req, res){
