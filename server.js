@@ -33,7 +33,7 @@ app.route('/api/job/:id')
 
 
 //frontend routes
-app.get('*', (req, res) => {
+app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, './public/views','index.html' ))
 })
 
