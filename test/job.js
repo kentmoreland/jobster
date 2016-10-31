@@ -120,5 +120,41 @@ describe('Jobs', () => {
       });
     });
   });
+describe('/PUT/:id job', () => {
+  it('it should update a job given the id', (done) => {
+    let job = new Job({
+      company: 'Facebook',
+      title: 'SWD',
+      description: 'crush apps',
+      location: 'Gallatin, TN',
+      compensation: 250000,
+      siteFound: 'Indeed',
+      siteApplied: 'Indeed',
+      coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+    });
+    job.save((err, job) => {
+      chai.request(server)
+      .put('/job/' + job.id)
+      .send({
+        company: 'Facebook',
+        title: 'SWD',
+        description: 'crush apps',
+        location: 'Silicon Valley, CA',
+        compensation: 250000,
+        siteFound: 'Indeed',
+        siteApplied: 'Indeed',
+        coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+      })
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message').eql('Job updated!');
+        res.body.job.should.have.property('location').eql('Silicon Valley, CA');
+      done();
+      })
+    })
+  })
+})
+
 
 });
