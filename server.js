@@ -4,6 +4,7 @@ let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
 let port = 8080;
 let job = require('./app/routes/job');
+let path = require('path');
 
 //db connection
 mongoose.connect('mongodb://localhost/jobster-t');
@@ -18,20 +19,23 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
 
 
-//routes
-app.get('/', (req, res) => res.json({message: 'Welcome to Jobster!'}));
+//apiroutes
+app.get('/api', (req, res) => res.json({message: 'Welcome to Jobster!'}));
 
-app.route('/job')
+app.route('/api/job')
    .get(job.getJobs)
    .post(job.postJob);
 
-app.route('/job/:id')
+app.route('/api/job/:id')
    .get(job.getJob)
    .delete(job.deleteJob)
    .put(job.updateJob);
 
 
-
+//frontend routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/views','index.html' ))
+})
 
 //server connect
 app.listen(port);
