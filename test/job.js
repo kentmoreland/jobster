@@ -155,6 +155,33 @@ describe('/PUT/:id job', () => {
     })
   })
 })
+describe('/DELETE/:id job', (done) => {
+  it('it should DELETE a job given the id', (done) => {
+    let job = new Job({
+      company: 'Facebook',
+      title: 'SWD',
+      description: 'crush apps',
+      location: 'Silicon Valley, CA',
+      compensation: 250000,
+      siteFound: 'Indeed',
+      siteApplied: 'Indeed',
+      coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+    })
+    job.save((err, job) => {
+      chai.request(server)
+      .delete('/job/' + job.id)
+      .end((err, res) => {
+        res.should.have.status(200);
+        res.body.should.be.a('object');
+        res.body.should.have.property('message').eql('Job successfully deleted!');
+        res.body.result.should.have.property('ok').eql(1);
+        res.body.result.should.have.property('n').eql(1);
+      done();
+      });
+    });
+  });
+});
+
 
 
 });
