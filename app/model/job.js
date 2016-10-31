@@ -3,15 +3,15 @@ let Schema = mongoose.Schema;
 
 let JobSchema = new Schema(
   {
-    Company: {type: String, required: true},
-    Title: {type: String, required: true},
-    Description: {type: String},
-    Location: {type: String, required: true},
+    company: {type: String, required: true},
+    title: {type: String, required: true},
+    description: {type: String},
+    location: {type: String, required: true},
     // ApplyDate: {type: },
-    Compensation: {type: Number},
-    SiteFound: {type: String, required: true},
-    SiteApplied: {type: String, required: true},
-    CoverLetter: {type: String},
+    compensation: {type: Number},
+    siteFound: {type: String, required: true},
+    siteApplied: {type: String, required: true},
+    coverLetter: {type: String},
   }
 );
 
