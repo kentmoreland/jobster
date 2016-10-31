@@ -87,4 +87,38 @@ describe('Jobs', () => {
     });
   });
 
+  describe('/GET/:id job', () => {
+    it('it should GET a job by the given id', (done) => {
+      let job = new Job({
+        company: 'Google',
+        title: 'SWE',
+        description: 'crush apps',
+        location: 'Nashville, TN',
+        compensation: 200000,
+        siteFound: 'Google',
+        siteApplied: 'Google',
+        coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+      });
+      job.save((err, job) => {
+        chai.request(server)
+        .get('/job/' + job.id)
+        .send(job)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.a('object');
+          res.body.should.have.property('company');
+          res.body.should.have.property('title');
+          res.body.should.have.property('description');
+          res.body.should.have.property('location');
+          res.body.should.have.property('compensation');
+          res.body.should.have.property('siteFound');
+          res.body.should.have.property('siteApplied');
+          res.body.should.have.property('coverLetter');
+          res.body.should.have.property('_id').eql(job.id);
+        done();
+        });
+      });
+    });
+  });
+
 });
