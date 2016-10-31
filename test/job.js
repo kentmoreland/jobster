@@ -22,7 +22,7 @@ describe('Jobs', () => {
   describe('/GET job', () => {
     it('it should GET all the jobs', (done) => {
       chai.request(server)
-        .get('/job')
+        .get('/api/job')
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
@@ -44,7 +44,7 @@ describe('Jobs', () => {
         coverLetter: "Dear Google, I am awesome!"
       }
       chai.request(server)
-      .post('/job')
+      .post('/api/job')
       .send(job)
       .end((err, res) => {
         res.should.have.status(200);
@@ -68,7 +68,7 @@ describe('Jobs', () => {
       coverLetter: "Dear Google, I am awesome!"
     }
     chai.request(server)
-    .post('/job')
+    .post('/api/job')
     .send(job)
     .end((err, res) => {
       res.should.have.status(200);
@@ -101,7 +101,7 @@ describe('Jobs', () => {
       });
       job.save((err, job) => {
         chai.request(server)
-        .get('/job/' + job.id)
+        .get('/api/job/' + job.id)
         .send(job)
         .end((err, res) => {
           res.should.have.status(200);
@@ -134,7 +134,7 @@ describe('/PUT/:id job', () => {
     });
     job.save((err, job) => {
       chai.request(server)
-      .put('/job/' + job.id)
+      .put('/api/job/' + job.id)
       .send({
         company: 'Facebook',
         title: 'SWD',
@@ -169,7 +169,7 @@ describe('/DELETE/:id job', (done) => {
     })
     job.save((err, job) => {
       chai.request(server)
-      .delete('/job/' + job.id)
+      .delete('/api/job/' + job.id)
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
