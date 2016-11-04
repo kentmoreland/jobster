@@ -8,11 +8,14 @@
 JobApp Details:
 ------------
 - Company
-- Job Title
+- Title
 - Description
 - Location
+  -- City, State
 - Date Applied
 - Listed Compensation
+  -- Number
+  -- Range
 - Site Found
 - Site Applied
 - Cover Letter
