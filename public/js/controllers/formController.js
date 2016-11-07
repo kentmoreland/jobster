@@ -11,8 +11,8 @@ jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
     s.compensation = '';
     s.rangeh = '';
     s.rangel = '';
-    s.siteFound = '';
-    s.siteApplied = '';
+    s.site_found = '';
+    s.site_applied = '';
     s.coverLetter = '';
   };
   s.addJob = () => {
@@ -41,4 +41,16 @@ jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
       console.log(status);
     });
   };
+}]);
+
+jobster.controller('jobDisplayController', ['$scope', '$http', ($scope, $http) => {
+  const s = $scope;
+  $http({
+    method: 'GET',
+    url: 'api/job',
+  })
+  .then((result) => {
+    s.jobs = result.data;
+    console.log(result.data);
+  });
 }]);
