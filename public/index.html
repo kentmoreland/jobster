@@ -22,18 +22,28 @@
   <section ng-controller='formController'>
 
     <form novalidate>
+      <label for="status">Status</label><br>
+      <select name="status" ng-model="status">
+        <option value="">---Please select---</option>
+        <option value="queued">Queued</option>
+        <option value="applied">Applied</option>
+        <option value="in_progress">In Progress</option>
+        <option value="rejected">Rejected</option>
+      </select><br>
     <!-- company -->
     <input type="text" ng-model="company" placeholder="What company?">
     <!-- title -->
     <input type="text" ng-model="title" placeholder="What's the job Title?">
     <!-- description -->
     <textarea rows="8" cols="40" ng-model="description" placeholder="Copy and paste the job description."></textarea>
+    <!-- link -->
+    <input type="text" ng-model="link" placeholder="Link to the Job">
     <!-- city -->
     <input type="text" ng-model="city" placeholder="What city?">
     <!-- state -->
     <input type="text" ng-model="state" placeholder="What state?">
     <!-- date -->
-    <input type="Date" ng-model="application_Date">
+    <input type="Date" ng-model="application_date">
     <!-- compensation listed yes -->
     <fieldset>
     <label for="yes">Compensation listed?</label> <br>
@@ -66,7 +76,9 @@
 
 <section ng-controller="jobDisplayController">
   <ul ng-repeat="job in jobs" >
-    <li>{{ job.company }} </li>
+    <li>{{ job.company }}
+        {{ job.status }}
+    </li>
   </ul>
 
 </section>

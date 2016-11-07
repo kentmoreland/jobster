@@ -2,18 +2,22 @@ const jobster = angular.module('jobster', []);
 
 jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
   const s = $scope;
+
   const clearForm = () => {
+    s.status = '';
     s.company = '';
     s.title = '';
     s.description = '';
+    s.link = '';
     s.city = '';
     s.state = '';
+    s.application_date = '';
     s.compensation = '';
     s.rangeh = '';
     s.rangel = '';
     s.site_found = '';
     s.site_applied = '';
-    s.coverLetter = '';
+    s.cover_letter = '';
   };
   s.addJob = () => {
     $http({
@@ -23,14 +27,17 @@ jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
         company: s.company,
         title: s.title,
         description: s.description,
+        link: s.link,
         city: s.city,
         state: s.state,
+        applyDate: s.application_date,
         compensation: s.compensation,
         rangeh: s.rangeh,
         rangel: s.rangel,
         siteFound: s.site_found,
         siteApplied: s.site_applied,
         coverLetter: s.cover_letter,
+        status: s.status,
       },
     })
     .success((result) => {
@@ -38,7 +45,7 @@ jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
       clearForm();
     })
     .error((data, status) => {
-      console.log(status);
+      console.log(data, status);
     });
   };
 }]);

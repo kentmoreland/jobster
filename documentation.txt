@@ -10,6 +10,7 @@ JobApp Details:
 - Company
 - Title
 - Description
+- Link
 - Location
   -- City, State
 - Date Applied
