@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="jobster">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
+
+  <title>Jobster</title>
+</head>
+<body>
+  <nav class="navbar navbar-default">
+    <ul class="nav navbar-nav">
+      <li><a ui-sref="home">Home</a></li>
+      <li><a ui-ref="applist">App List</a></li>
+    </ul>
+  </nav>
+  <header>
+    <h1>WELCOME TO JOBSTER </h1>
+    <h3>Lets submit some apps!</h3>
+  </header>
+  <section ng-controller='formController'>
+
+    <form novalidate>
+    <!-- company -->
+    <input type="text" ng-model="company" placeholder="What company?">
+    <!-- title -->
+    <input type="text" ng-model="title" placeholder="What's the job Title?">
+    <!-- description -->
+    <textarea rows="8" cols="40" ng-model="description" placeholder="Copy and paste the job description."></textarea>
+    <!-- city -->
+    <input type="text" ng-model="city" placeholder="What city?">
+    <!-- state -->
+    <input type="text" ng-model="state" placeholder="What state?">
+    <!-- date -->
+    <input type="Date" ng-model="application_Date">
+    <!-- range -->
+    <input name="compensation_type" type="radio" ng-model="compensation_type" value="range">Range
+    <!-- dollar -->
+    <input type="radio" name="compensation_type" ng-model="compensation_type" value="dollar_amount">Dollar Amount
+    <!-- compensation -->
+    <input type="text" ng-model="compensation" ng-hide="compensation_type === 'range'" placeholder="What's the pay?">
+    <!-- rangeh -->
+    <input type="text" ng-model="rangeh" placeholder="Range High" ng-hide="compensation_type === 'dollar_amount'">
+    <!-- rangel -->
+    <input type="text" ng-model="rangel" placeholder="Range Low" ng-hide="compensation_type === 'dollar_amount'">
+    <!-- sitefound -->
+    <input type="text" ng-model="site_found" placeholder="What site did you find the job?">
+    <!-- siteapplied -->
+    <input type="text" ng-model="site_applied" placeholder="What site did you Apply?">
+    <!-- coverletter -->
+    <textarea rows="8" cols="40" ng-model="cover_letter" placeholder="Copy and paste the cover letter you submitted."></textarea>
+    <input type="submit" ng-click="addJob()">
+    </form>
+
+  <div>
+    <h6>{{ company }}</h6>
+
+  </div>
+</section>
+
+  <script src="libs/angular/angular.min.js"></script>
+  <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="js/controllers/formController.js"></script>
+</body>
+</html>
