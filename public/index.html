@@ -34,6 +34,14 @@
     <input type="text" ng-model="state" placeholder="What state?">
     <!-- date -->
     <input type="Date" ng-model="application_Date">
+    <!-- compensation listed yes -->
+    <fieldset>
+    <label for="yes">Compensation listed?</label> <br>
+    <input type="radio" name="compensation_listed" ng-model="compensation_listed" value="yes">Yes
+    <!-- compensation listed no -->
+    <input type="radio" name="compensation_listed" ng-model="compensation_listed" value="no">No
+    </fieldset>
+    <fieldset ng-show="compensation_listed === 'yes'">
     <!-- range -->
     <input name="compensation_type" type="radio" ng-model="compensation_type" value="range">Range
     <!-- dollar -->
@@ -44,6 +52,8 @@
     <input type="text" ng-model="rangeh" placeholder="Range High" ng-hide="compensation_type === 'dollar_amount'">
     <!-- rangel -->
     <input type="text" ng-model="rangel" placeholder="Range Low" ng-hide="compensation_type === 'dollar_amount'">
+    </fieldset>
+    <br>
     <!-- sitefound -->
     <input type="text" ng-model="site_found" placeholder="What site did you find the job?">
     <!-- siteapplied -->
@@ -52,15 +62,18 @@
     <textarea rows="8" cols="40" ng-model="cover_letter" placeholder="Copy and paste the cover letter you submitted."></textarea>
     <input type="submit" ng-click="addJob()">
     </form>
+</section>
 
-  <div>
-    <h6>{{ company }}</h6>
+<section ng-controller="jobDisplayController">
+  <ul ng-repeat="job in jobs" >
+    <li>{{ job.company }} </li>
+  </ul>
 
-  </div>
 </section>
 
   <script src="libs/angular/angular.min.js"></script>
   <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
   <script src="js/controllers/formController.js"></script>
+  <script src="js/controllers/jobDisplayController.js"></script>
 </body>
 </html>
