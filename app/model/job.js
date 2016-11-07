@@ -1,17 +1,21 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
 
-let JobSchema = new Schema(
+const Schema = mongoose.Schema;
+
+const JobSchema = new Schema(
   {
-    company: {type: String, required: true},
-    title: {type: String, required: true},
-    description: {type: String},
-    location: {type: String, required: true},
-    // ApplyDate: {type: },
-    compensation: {type: Number},
-    siteFound: {type: String, required: true},
-    siteApplied: {type: String, required: true},
-    coverLetter: {type: String},
+    company: { type: String, required: true },
+    title: { type: String, required: true },
+    description: { type: String },
+    city: { type: String, required: true },
+    state: { type: String, required: true },
+    applyDate: { type: Date },
+    compensation: { type: Number },
+    rangeh: { type: Number },
+    rangel: { type: Number },
+    siteFound: { type: String, required: true },
+    siteApplied: { type: String, required: true },
+    coverLetter: { type: String },
   }
 );
 
