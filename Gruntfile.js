@@ -7,7 +7,7 @@ module.exports = (grunt) => {
     },
     watch: {
       scripts: {
-        files: ['Gruntfile.js', 'public/*'],
+        files: ['Gruntfile.js', 'public/*.js'],
         tasks: ['eslint'],
         options: {
           spawn: false,
