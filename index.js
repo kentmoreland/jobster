@@ -2,6 +2,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const job = require('./app/routes/job');
+const livereload = require('livereload');
+
+const server = livereload.createServer();
+
+server.watch(`${__dirname}/public`);
 
 const app = express();
 const port = 8080;
