@@ -1,0 +1,86 @@
+<section ng-controller='formController'>
+  <div class="container-fluid form-container">
+    <div class="row col-md-12">
+      <h1>Get Started</h1>
+      <form novalidate>
+        <div class="form-group">
+        <label for="status">Status</label><br>
+        <select name="status" ng-model="status">
+          <option value="">---Please select---</option>
+          <option value="queued">Queued</option>
+          <option value="applied">Applied</option>
+          <option value="in_progress">In Progress</option>
+          <option value="rejected">Rejected</option>
+        </select><br>
+        </div>
+        <!-- company -->
+        <div class="form-group" >
+        <input type="text" ng-model="company" placeholder="What company?">
+        </div>
+        <!-- title -->
+        <div class="form-group">
+        <input type="text" ng-model="title" placeholder="What's the job Title?">
+        </div>
+        <!-- description -->
+        <div class="form-group">
+        <textarea rows="8" cols="40" ng-model="description" placeholder="Copy and paste the job description."></textarea>
+        </div>
+        <!-- link -->
+        <div class="form-group">
+        <input type="text" ng-model="link" placeholder="Link to the Job">
+        </div>
+        <!-- city -->
+        <div class="form-group">
+        <input type="text" ng-model="city" placeholder="What city?">
+        </div>
+        <!-- state -->
+        <div class="form-group">
+        <input type="text" ng-model="state" placeholder="What state?">
+        </div>
+        <!-- date -->
+        <div class="form-group">
+        <input type="Date" ng-model="application_date">
+        </div>
+        <!-- compensation listed yes -->
+        <div class="group-form">
+        <fieldset>
+        <label for="yes">Compensation listed?</label> <br>
+        <input type="radio" name="compensation_listed" ng-model="compensation_listed" value="yes">Yes
+        <!-- compensation listed no -->
+        <input type="radio" name="compensation_listed" ng-model="compensation_listed" value="no">No
+        </fieldset>
+        </div>
+        <div class="form-group">
+        <fieldset ng-show="compensation_listed === 'yes'">
+        <!-- range -->
+        <input name="compensation_type" type="radio" ng-model="compensation_type" value="range">Range
+        <!-- dollar -->
+        <input type="radio" name="compensation_type" ng-model="compensation_type" value="dollar_amount">Dollar Amount
+        <!-- compensation -->
+        <input type="text" ng-model="compensation" ng-hide="compensation_type === 'range'" placeholder="What's the pay?">
+        <!-- rangeh -->
+        <input type="text" ng-model="rangeh" placeholder="Range High" ng-hide="compensation_type === 'dollar_amount'">
+        <!-- rangel -->
+        <input type="text" ng-model="rangel" placeholder="Range Low" ng-hide="compensation_type === 'dollar_amount'">
+        </fieldset>
+        </div>
+        <br>
+        <!-- sitefound -->
+        <div class="form-group">
+        <input type="text" ng-model="site_found" placeholder="What site did you find the job?">
+        </div>
+        <!-- siteapplied -->
+        <div class="form-group">
+        <input type="text" ng-model="site_applied" placeholder="What site did you Apply?">
+        </div>
+        <!-- coverletter -->
+        <div class="form-group">
+        <textarea rows="8" cols="40" ng-model="cover_letter" placeholder="Copy and paste the cover letter you submitted."></textarea>
+        </div>
+        <div class="form-group">
+        <input type="submit" ng-click="addJob()" class="btn btn-default">
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

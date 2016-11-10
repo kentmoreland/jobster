@@ -1,4 +1,4 @@
-const jobster = angular.module('jobster', []);
+const jobster = angular.module('jobster.controllers', []);
 
 jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
   const s = $scope;

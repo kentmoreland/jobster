@@ -1,0 +1,16 @@
+<div ng-controller="jobDisplayController">
+  <table class="table table-hover">
+    <th>Company</th>
+    <th>Job Title</th>
+    <th>Location</th>
+    <th>Status</th>
+    <th>Date Applied</th>
+    <tr ng-repeat="job in jobs">
+      <td>{{ job.company }}</td>
+      <td>{{ job.title }}</td>
+      <td>{{ job.city }}, {{ job.state }}</td>
+      <td>{{ job.status }}</td>
+      <td>{{ job.applyDate | date }}</td>
+    </tr>
+  </table>
+</div>
