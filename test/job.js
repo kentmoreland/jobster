@@ -1,24 +1,21 @@
+const Job = require('../app/model/job');
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+const server = require('../index.js');
 
-let mongoose = require('mongoose');
-let Job = require('../app/model/job');
-
-//require the dev-dependencies
-let chai = require('chai');
-let chaiHttp = require('chai-http');
-let server = require('../server');
-let should = chai.should();
+const should = chai.should();
 
 chai.use(chaiHttp);
 
-//parent block
-describe('Jobs', () => {
+// parent block
+ describe('Jobs', () => {
   beforeEach((done) => { //Before each test we empty the database
     Job.remove({}, (err) => {
       done();
     });
   });
 
-  //Test the /GET route
+  // Test the /GET route
   describe('/GET job', () => {
     it('it should GET all the jobs', (done) => {
       chai.request(server)
@@ -38,10 +35,13 @@ describe('Jobs', () => {
         title: "SWE",
         description: "make cool stuff!",
         location: "Gallatin, TN",
+        link: "www.google.com",
         compensation: 200000,
+        applyDate: "2016-11-05",
         siteFound: "Google",
         siteApplied: "Google",
-        coverLetter: "Dear Google, I am awesome!"
+        coverLetter: "Dear Google, I am awesome!",
+        status: "In progress"
       }
       chai.request(server)
       .post('/api/job')
@@ -61,11 +61,15 @@ describe('Jobs', () => {
       company: "Google",
       title: "SWE",
       description: "make cool stuff!",
-      location: "Gallatin, TN",
+      link: "www.google.com",
+      city: "Gallatin",
+      state: "TN",
+      applyDate: "2016-11-05",
       compensation: 200000,
       siteFound: "Google",
       siteApplied: "Google",
-      coverLetter: "Dear Google, I am awesome!"
+      coverLetter: "Dear Google, I am awesome!",
+      status: "In progress"
     }
     chai.request(server)
     .post('/api/job')
@@ -77,11 +81,14 @@ describe('Jobs', () => {
       res.body.job.should.have.property('company');
       res.body.job.should.have.property('title');
       res.body.job.should.have.property('description');
-      res.body.job.should.have.property('location');
+      res.body.job.should.have.property('city');
+      res.body.job.should.have.property('state');
+      res.body.job.should.have.property('applyDate');
       res.body.job.should.have.property('compensation');
       res.body.job.should.have.property('siteFound');
       res.body.job.should.have.property('siteApplied');
       res.body.job.should.have.property('coverLetter');
+      res.body.job.should.have.property('status');
     done();
       });
     });
@@ -93,11 +100,14 @@ describe('Jobs', () => {
         company: 'Google',
         title: 'SWE',
         description: 'crush apps',
-        location: 'Nashville, TN',
+        link: 'www.google.com',
+        city: 'Nashville',
+        state: 'TN',
         compensation: 200000,
         siteFound: 'Google',
         siteApplied: 'Google',
-        coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+        coverLetter: 'Dear Hiring Manager, Pick me I am awesome',
+        status: 'In progress'
       });
       job.save((err, job) => {
         chai.request(server)
@@ -109,11 +119,14 @@ describe('Jobs', () => {
           res.body.should.have.property('company');
           res.body.should.have.property('title');
           res.body.should.have.property('description');
-          res.body.should.have.property('location');
+          res.body.should.have.property('link');
+          res.body.should.have.property('city');
+          res.body.should.have.property('state');
           res.body.should.have.property('compensation');
           res.body.should.have.property('siteFound');
           res.body.should.have.property('siteApplied');
           res.body.should.have.property('coverLetter');
+          res.body.should.have.property('status');
           res.body.should.have.property('_id').eql(job.id);
         done();
         });
@@ -126,11 +139,14 @@ describe('/PUT/:id job', () => {
       company: 'Facebook',
       title: 'SWD',
       description: 'crush apps',
-      location: 'Gallatin, TN',
+      link: 'www.facebook.com',
+      city: 'Gallatin',
+      state: 'TN',
       compensation: 250000,
       siteFound: 'Indeed',
       siteApplied: 'Indeed',
-      coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+      coverLetter: 'Dear Hiring Manager, Pick me I am awesome',
+      status: 'In progress',
     });
     job.save((err, job) => {
       chai.request(server)
@@ -139,17 +155,21 @@ describe('/PUT/:id job', () => {
         company: 'Facebook',
         title: 'SWD',
         description: 'crush apps',
-        location: 'Silicon Valley, CA',
+        link: 'www.facebook.com',
+        city: 'Silicon Valley',
+        state: 'CA',
         compensation: 250000,
         siteFound: 'Indeed',
         siteApplied: 'Indeed',
-        coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+        coverLetter: 'Dear Hiring Manager, Pick me I am awesome',
+        status: 'In progress'
       })
       .end((err, res) => {
         res.should.have.status(200);
         res.body.should.be.a('object');
         res.body.should.have.property('message').eql('Job updated!');
-        res.body.job.should.have.property('location').eql('Silicon Valley, CA');
+        res.body.job.should.have.property('city').eql('Silicon Valley');
+        res.body.job.should.have.property('state').eql('CA');
       done();
       })
     })
@@ -161,11 +181,14 @@ describe('/DELETE/:id job', (done) => {
       company: 'Facebook',
       title: 'SWD',
       description: 'crush apps',
-      location: 'Silicon Valley, CA',
+      link: 'www.facebook.com',
+      city: 'Silicon Valley',
+      state: 'CA',
       compensation: 250000,
       siteFound: 'Indeed',
       siteApplied: 'Indeed',
-      coverLetter: 'Dear Hiring Manager, Pick me I am awesome'
+      coverLetter: 'Dear Hiring Manager, Pick me I am awesome',
+      status: 'In progress'
     })
     job.save((err, job) => {
       chai.request(server)
@@ -181,7 +204,4 @@ describe('/DELETE/:id job', (done) => {
     });
   });
 });
-
-
-
 });
