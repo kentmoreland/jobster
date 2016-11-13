@@ -1,0 +1,63 @@
+<section ng-controller="jobDetailsController">
+  <h1>{{ jobDetails.company}}</h1>
+  <h3 class="addit">Details Page</h3>
+  <section>
+    <table class="table table-hover">
+      <tbody>
+        <tr>
+          <th scope="row">Status</th>
+          <td>{{ jobDetails.status }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Company</th>
+          <td>{{ jobDetails.company }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Title</th>
+          <td>{{ jobDetails.title }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Link</th>
+          <td>{{ jobDetails.link }}</td>
+        </tr>
+        <tr>
+          <th scope="row">City</th>
+          <td>{{ jobDetails.city }}</td>
+        </tr>
+        <tr>
+          <th scope="row">State</th>
+          <td>{{ jobDetails.state }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Date Applied</th>
+          <td>{{ jobDetails.applyDate | date }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Compensation: <span class="addit">Number</span></th>
+          <td>{{ jobDetails.compensation }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Compensation <span>Range: High Number</span></th>
+          <td>{{ jobDetails.rangeh }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Compensation
+            <span>Range: Low Number </span>Range: Low Number</th>
+          <td>{{ jobDetails.rangel }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Site Found</th>
+          <td>{{ jobDetails.siteFound }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Site Applied</th>
+          <td>{{ jobDetails.siteApplied }}</td>
+        </tr>
+        <tr>
+          <th scope="row">Job Description</th>
+          <td>{{ jobDetails.Description }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+</section>

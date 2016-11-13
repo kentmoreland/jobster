@@ -6,11 +6,12 @@
     <th>Status</th>
     <th>Date Applied</th>
     <tr ng-repeat="job in jobs">
-      <td>{{ job.company }}</td>
+      <td><a ui-sref="job" ng-click='storeId(job._id)'>{{ job.company }}</a></td>
       <td>{{ job.title }}</td>
       <td>{{ job.city }}, {{ job.state }}</td>
       <td>{{ job.status }}</td>
       <td>{{ job.applyDate | date }}</td>
     </tr>
+
   </table>
 </div>

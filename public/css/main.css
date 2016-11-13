@@ -8,3 +8,7 @@
 .form-container {
   text-align: center;
 }
+/*add italics to text*/
+.addit {
+  font-style: italic;
+}
