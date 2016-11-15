@@ -2,7 +2,18 @@
   <h1>{{ jobDetails.company}}</h1>
   <h3 class="addit">Details Page</h3>
   <div>
-    <span><button class="btn btn-warning" ng-click="edit = !edit">Edit</button></span><span><button class="btn btn-danger" ng-click="deleteJob(jobDetails._id)">Delete</button></span>
+    <span>
+      <button class="btn btn-primary" ng-click="edit = !edit">Edit</button>
+    </span>
+    <span>
+        <button class="btn btn-danger" ng-click="delete = !delete">Delete</button>
+    </span>
+    <span>
+      <button class="btn btn-warning" ng-hide="!delete" ng-click="deleteJob(jobDetails._id)">Confirm</button>
+    </span>
+  </div>
+  <div>
+    <p class="error" ng-hide="!delete">Confirm deletion of <span class="additb">{{ jobDetails.company }}</span></p>
   </div>
   <section>
     <table class="table table-hover">

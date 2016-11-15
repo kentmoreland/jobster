@@ -12,3 +12,15 @@
 .addit {
   font-style: italic;
 }
+.addb {
+  font-weight: bold;
+}
+.additb {
+  font-style: italic;
+  font-weight: bold;
+}
+
+.error{
+  color: red;
+  font-size: 2em;
+}
