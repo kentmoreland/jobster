@@ -6,9 +6,9 @@ function getJobs(req, res){
     let query = Job.find({});
     query.exec((err, jobs) => {
         if(err){
-            res.send(err);
+            return ( res.send(err) );
         }
-        res.json(jobs);
+        return (res.json(jobs) );
     });
 }
 
@@ -17,9 +17,9 @@ function postJob(req, res){
 
     newJob.save((err, job) => {
         if(err){
-            res.send(err);
+            return ( res.send(err) );
         }else{
-            res.json({message: 'Job successfully added!', job });
+          return ( res.json({message: 'Job successfully added!', job }) )
         }
     });
 }
@@ -27,15 +27,16 @@ function postJob(req, res){
 function getJob(req, res){
     Job.findById(req.params.id, (err, job) => {
         if(err){
-            res.send(err);
+            return (res.send(err) );
         }
-        res.json(job);
+        return ( res.json(job) );
+
     });
 }
 
 function deleteJob(req, res) {
     Job.remove({_id : req.params.id}, (err, result) => {
-        res.json({ message: 'Job successfully deleted!', result});
+        return ( res.json({ message: 'Job successfully deleted!', result}) );
     });
 }
 
@@ -43,16 +44,14 @@ function deleteJob(req, res) {
 function updateJob(req, res){
     Job.findById({_id: req.params.id}, (err, job) => {
         if(err){
-            res.send(err);
-            return;
+            return ( res.send(err) );
+
         }
         Object.assign(job, req.body).save((err, job) => {
             if(err){
-                res.send(err);
-                return;
+                return ( res.send(err) );
             }
-            res.json({ message: 'Job updated!', job});
-            return;
+            return ( res.json({ message: 'Job updated!', job}) );
         });
     });
 }
