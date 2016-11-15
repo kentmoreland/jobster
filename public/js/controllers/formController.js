@@ -131,6 +131,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', ($scope
         })
       .success((data, status) => {
           clearForm();
+          getJobDetails(id);
           console.log(data);
           console.log(status);
       })

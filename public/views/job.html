@@ -130,7 +130,7 @@
             </span>
               {{ jobDetails.Description }}
             <div>
-              <button class="btn btn-secondary" ng-hide="!edit" ng-click="updateJob(jobDetails._id)">Update</button>
+              <button class="btn btn-secondary" ng-hide="!edit" ng-click="updateJob(jobDetails._id); edit = !edit">Update</button>
             </div>
           </td>
         </tr>
