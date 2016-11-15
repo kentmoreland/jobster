@@ -93,22 +93,6 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', ($scope
     };
     getJobDetails(id);
 
-    const clearForm = () => {
-        s.status = '';
-        s.company = '';
-        s.title = '';
-        s.description = '';
-        s.link = '';
-        s.city = '';
-        s.state = '';
-        s.application_date = '';
-        s.compensation = '';
-        s.rangeh = '';
-        s.rangel = '';
-        s.site_found = '';
-        s.site_applied = '';
-    };
-
     s.updateJob = (id) => {
         $http({
             method: 'PUT',
@@ -130,7 +114,6 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', ($scope
             },
         })
       .success((data, status) => {
-          clearForm();
           getJobDetails(id);
           console.log(data);
           console.log(status);

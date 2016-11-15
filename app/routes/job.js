@@ -42,10 +42,17 @@ function deleteJob(req, res) {
 
 function updateJob(req, res){
     Job.findById({_id: req.params.id}, (err, job) => {
-        if(err) res.send(err);
+        if(err){
+            res.send(err);
+            return;
+        }
         Object.assign(job, req.body).save((err, job) => {
-            if(err) res.send(err);
+            if(err){
+                res.send(err);
+                return;
+            }
             res.json({ message: 'Job updated!', job});
+            return;
         });
     });
 }
