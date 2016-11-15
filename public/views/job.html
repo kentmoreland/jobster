@@ -2,7 +2,7 @@
   <h1>{{ jobDetails.company}}</h1>
   <h3 class="addit">Details Page</h3>
   <div>
-    <span><button class="btn btn-warning" ng-click="edit = !edit">Edit</button></span><span><button class="btn btn-danger">Delete</button></span>
+    <span><button class="btn btn-warning" ng-click="edit = !edit">Edit</button></span><span><button class="btn btn-danger" ng-click="deleteJob(jobDetails._id)">Delete</button></span>
   </div>
   <section>
     <table class="table table-hover">
@@ -128,7 +128,10 @@
             <span ng-hide="!edit">
               <textarea rows="8" cols="20" ng-model="description" placeholder="Copy and paste the job description."></textarea>
             </span>
-            {{ jobDetails.Description }}
+              {{ jobDetails.Description }}
+            <div>
+              <button class="btn btn-secondary" ng-hide="!edit" ng-click="updateJob(jobDetails._id)">Update</button>
+            </div>
           </td>
         </tr>
       </tbody>
