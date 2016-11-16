@@ -3,16 +3,18 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const job = require('./app/routes/job');
 const livereload = require('livereload');
-
+let env = process.env.NODE_ENV || 'development';
+const config = require('./configuration/config')[env];
 const server = livereload.createServer();
 
 server.watch(`${__dirname}/public`);
 
 const app = express();
-const port = 8080;
+
+app.set('port', process.env.PORT || config.port || 8080);
 
 // db connection
-mongoose.connect('mongodb://localhost/jobster-t');
+mongoose.connect(config.db);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
@@ -41,8 +43,8 @@ app.route('/api/job/:id')
 app.use(express.static(`${__dirname}/public`));
 
 // server connect
-app.listen(port);
-console.log(`Connect success! Listening on port ${port}.`);
+app.listen(app.get('port'));
+console.log(`Connect success! Listening on port ${app.get('port')}.`);
 
 
 module.exports = app; // for testing

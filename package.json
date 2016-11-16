@@ -4,8 +4,8 @@
   "description": "A web application which helps manage job applications during a job search.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "mocha --timeout 10000"
+    "start": "NODE_ENV=development nodemon",
+    "test": "NODE_ENV=test mocha "
   },
   "repository": {
     "type": "git",
