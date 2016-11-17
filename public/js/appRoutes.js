@@ -1,17 +1,17 @@
 const routerApp = angular.module('jobster.router', ['ui.router']);
 routerApp.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/home');
-    $stateProvider
+  $urlRouterProvider.otherwise('/home');
+  $stateProvider
   .state('home', {
-      url: '/home',
-      templateUrl: 'views/home.html',
+    url: '/home',
+    templateUrl: 'views/home.html',
   })
   .state('jobs', {
-      url: '/jobs',
-      templateUrl: 'views/jobs.html',
+    url: '/jobs',
+    templateUrl: 'views/jobs.html',
   })
   .state('job', {
-      url: '/job',
-      templateUrl: 'views/job.html',
+    url: '/job',
+    templateUrl: 'views/job.html',
   });
 }]);
