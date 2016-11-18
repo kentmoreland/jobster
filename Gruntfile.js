@@ -5,6 +5,22 @@ module.exports = (grunt) => {
     eslint: {
       target: ['Gruntfile.js', 'public/js/**/*.js'],
     },
+    uglify: {
+      build: {
+        src: 'public/js/*.js',
+        dest: 'public/dest/script.min.js',
+      },
+      dev: {
+        options:{
+          beautify: true,
+          mangle: false,
+          compress: false,
+          preserveComments: 'all',
+        },
+        src: 'public/js/*.js',
+        dest: 'public/dest/script.min.js',
+      }
+    },
     watch: {
       scripts: {
         files: ['Gruntfile.js', 'public/*.js'],
@@ -16,7 +32,8 @@ module.exports = (grunt) => {
     },
   });
 
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('gruntify-eslint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.registerTask('default', ['eslint']);
+  grunt.registerTask('default', ['eslint', 'uglify:dev']);
 };
