@@ -2,10 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const job = require('./app/routes/job');
+const user = require('./app/routes/user');
 const livereload = require('livereload');
 let env = process.env.NODE_ENV || 'development';
 const config = require('./configuration/config')[env];
 const server = livereload.createServer();
+
 
 server.watch(`${__dirname}/public`);
 
@@ -37,6 +39,11 @@ app.route('/api/job/:id')
    .get(job.getJob)
    .delete(job.deleteJob)
    .put(job.updateJob);
+
+app.route('/api/user')
+   .get(user.getUsers)
+   .post(user.addUser);
+
 
 
 // frontend routes

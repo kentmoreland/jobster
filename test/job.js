@@ -17,7 +17,7 @@ describe('Jobs', () => {
 
     // Test the /GET route
   describe('/GET job', () => {
-    it('it should GET all the jobs', (done) => {
+    it('should GET all the jobs', (done) => {
       chai.request(server)
         .get('/api/job')
         .end((err, res) => {
