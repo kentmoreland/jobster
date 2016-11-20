@@ -13,5 +13,9 @@ routerApp.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlR
   .state('job', {
     url: '/job',
     templateUrl: 'views/job.html',
+  })
+  .state('register', {
+    url:'/register',
+    templateUrl: 'views/register.html',
   });
 }]);
