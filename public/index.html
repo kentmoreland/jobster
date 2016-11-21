@@ -10,12 +10,17 @@
   <title>Jobster</title>
 </head>
 <body>
-  <nav class="navbar navbar-default navigation">
+  <nav class="navbar navbar-default navigation" ng-controller="navigationCtrl">
     <ul class="nav navbar-nav">
       <li>
         <a ui-sref="home">Home</a>
       </li>
-      <li><a ui-sref="jobs">Jobs List</a></li>
+      <li ng-show="isLoggedIn">
+        <a ui-sref="jobs">{{ currentUser.name }} Jobs List</a>
+      </li>
+      <li ng-hide="isLoggedIn" >
+        <a ui-sref="login">Login</a>
+      </li>
     </ul>
   </nav>
   <header class="jumbotron header">
@@ -33,6 +38,9 @@
   <script src="js/controllers/formController.js"></script>
   <script src="js/controllers/jobDisplayController.js"></script>
   <script src="js/services/authenticationService.js"></script>
+  <script src="js/controllers/registerController.js"></script>
+  <script src="js/controllers/loginController.js"></script>
+  <script src="js/controllers/navigationController.js"></script>
   <script src="js/appRoutes.js"></script>
   <script src="js/app.js"></script>
 </body>

@@ -1,6 +1,6 @@
 const jobster = angular.module('jobster.controllers', []);
 
-jobster.controller('formController', ['$scope', '$http', ($scope, $http) => {
+jobster.controller('formController', ['$scope', '$http', function ($scope, $http) {
   const s = $scope;
   const clearForm = () => {
     s.status = '';
