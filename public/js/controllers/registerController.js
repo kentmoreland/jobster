@@ -13,7 +13,7 @@ angular.module('jobster.register', [])
       alert(err);
     })
     .then(() => {
-      $location.path('profile');
+      $location.path('jobs');
     });
   };
 }]);

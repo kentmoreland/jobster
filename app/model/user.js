@@ -1,9 +1,6 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 
-
-
-
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
@@ -13,19 +10,6 @@ const UserSchema = new Schema(
     password: String,
   }
 );
-
-
-// UserSchema.methods.setPassword = (password, callback) => {
-//   bcrypt.hash(password, 10, (err, hash) => {
-//     if(err){
-//       return callback(err);
-//     }
-//     this.passwordHash = hash;
-//     callback()
-//   }).bind(this);
-//   console.log(passwordHash);
-// };
-
 
 UserSchema.methods.comparePassword = (candidatePassword, cb) => {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {

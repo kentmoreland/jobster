@@ -11,11 +11,10 @@ module.exports = {
   register: (req, res) => {
     let user = new User();
 
-
     user.name = req.body.name;
     user.email = req.body.email;
 
-    bcrypt.hash(req.body.password, saltRounds, function(err, hash){
+    bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
       user.password = hash;
       user.save((err) => {
         let token;
@@ -30,6 +29,7 @@ module.exports = {
 
   login: (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
+      console.log(user);
       let token;
       if(err){
         res.status(404).json(err);
