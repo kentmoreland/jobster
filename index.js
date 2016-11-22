@@ -3,7 +3,6 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const job = require('./app/routes/job');
 const user = require('./app/controllers/authentication');
-const signIn = require('./app/controllers/login');
 const livereload = require('livereload');
 let env = process.env.NODE_ENV || 'development';
 const config = require('./configuration/config')[env];
@@ -58,7 +57,7 @@ app.route('/api/register')
    .post(user.register);
 
 app.route('/api/login')
-  .post(signIn.login); 
+  .post(user.login);
 
 app.use((err, req, res, next) => {
   if(err.name === 'UnauthorizedError'){

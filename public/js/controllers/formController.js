@@ -47,7 +47,7 @@ jobster.controller('formController', ['$scope', '$http', function ($scope, $http
   };
 }]);
 
-jobster.factory('jobData', ($http) => {
+jobster.factory('jobData', ($http, authentication) => {
   return {
     storeId: (id) => {
       localStorage.setItem('currid', id);
@@ -59,12 +59,18 @@ jobster.factory('jobData', ($http) => {
       return $http({
         method: 'GET',
         url: 'api/job',
+        headers: {
+          Authorization: 'Bearer' + authentication.getToken()
+        }
       });
     },
     getJob: (id) => {
       return $http({
         method: 'GET',
         url: `api/job/${id}`,
+        headers: {
+          Authorization: 'Bearer' + authentication.getToken()
+        }
       });
     },
   };
@@ -82,7 +88,7 @@ jobster.controller('jobDisplayController', ['$scope', 'jobData', ($scope, jobDat
   };
 }]);
 
-jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', ($scope, $http, jobData) => {
+jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authorization', ($scope, $http, jobData, authorization) => {
   const s = $scope;
   const id = jobData.getId();
   const getJobDetails = (jid) => {
@@ -97,6 +103,9 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', ($scope
     $http({
       method: 'PUT',
       url: `api/job/${id}`,
+      headers: {
+        Authorization: 'Bearer' + authorization.getToken()
+      },
       data: {
         status: s.status,
         company: s.company,
@@ -120,7 +129,13 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', ($scope
 
   s.deleteJob = (id) => {
     let url = `api/job/${id}`;
-    $http.delete(url)
+    $http.delete(url,{
+      method: 'DELETE',
+      url: url,
+      headers: {
+        Authorization: 'Bearer' + authentication.getToken()
+      }
+    })
         .success(() => {
         });
   };

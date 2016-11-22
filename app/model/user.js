@@ -1,30 +1,31 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
 
-const saltRounds = 10;
+
+
 
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema(
   {
-    name: { type: String, required: true},
-    email: { type: String, required: true },
-    password: {type: String, required: true},
+    name: {type: String},
+    email:  String,
+    password: String,
   }
 );
 
-UserSchema.pre('save', (next) => {
-  bcrypt.genSalt(saltRounds, (err, salt) => {
-    bcrypt.hash(UserSchema.password, salt, (err, hash) => {
-      if(err){
-        return next(err);
-      }
-      UserSchema.password = hash;
-    });
-  });
-  next();
-});
+
+// UserSchema.methods.setPassword = (password, callback) => {
+//   bcrypt.hash(password, 10, (err, hash) => {
+//     if(err){
+//       return callback(err);
+//     }
+//     this.passwordHash = hash;
+//     callback()
+//   }).bind(this);
+//   console.log(passwordHash);
+// };
+
 
 UserSchema.methods.comparePassword = (candidatePassword, cb) => {
   bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {

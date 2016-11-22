@@ -3,4 +3,8 @@ angular.module('jobster.nav', [])
   let s = $scope;
   s.isLoggedIn = authentication.isLoggedIn();
   s.currentUser = authentication.currentUser();
+  s.logout = () => {
+    authentication
+    .logout();
+  };
 }]);
