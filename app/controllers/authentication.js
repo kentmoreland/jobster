@@ -35,7 +35,7 @@ module.exports = {
         return;
       }
       if(user){
-        token = user.generateJwt();
+        token = user.generateJwt(user);
         res.status(200);
         res.json({
           'token': token
