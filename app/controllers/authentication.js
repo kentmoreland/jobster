@@ -18,7 +18,7 @@ module.exports = {
       user.password = hash;
       user.save((err) => {
         let token;
-        token = user.generateJwt();
+        token = user.generateJwt(user);
         res.status(200);
         res.json({
           'token': token,

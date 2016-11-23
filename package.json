@@ -25,6 +25,7 @@
     "express": "^4.14.0",
     "express-jwt": "^5.1.0",
     "install": "^0.8.2",
+    "jsonwebtoken": "^7.1.9",
     "livereload": "^0.6.0",
     "mongoose": "^4.6.5",
     "npm": "^3.10.9",

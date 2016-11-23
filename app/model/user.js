@@ -22,14 +22,14 @@ UserSchema.methods.comparePassword = (candidatePassword, hash, callback) => {
   });
 };
 
-UserSchema.methods.generateJwt = () => {
+UserSchema.methods.generateJwt = (user) => {
   let expiry = new Date();
   expiry.setDate(expiry.getDate() + 7);
 
   return jwt.sign({
-    _id: this.id,
-    email: this.email,
-    name: this.name,
+    _id: user.id,
+    email: user.email,
+    name: user.name,
     exp: parseInt(expiry.getTime() / 1000),
   }, 'kentified');
 };

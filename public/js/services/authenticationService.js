@@ -1,9 +1,9 @@
 angular.module('jobster', []);
 jobster.service('authentication', ['$http', '$window', function ($http, $window) {
-  const saveToken = (token) => {
+  saveToken = (token) => {
     $window.localStorage['mean-token'] = token;
   };
-  const getToken = () => {
+  getToken = () => {
     return $window.localStorage['mean-token'];
   };
 

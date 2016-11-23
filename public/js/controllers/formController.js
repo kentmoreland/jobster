@@ -56,6 +56,7 @@ jobster.factory('jobData', ($http, authentication) => {
       return localStorage.getItem('currid');
     },
     getJobs: () => {
+      
       return $http({
         method: 'GET',
         url: 'api/job',
