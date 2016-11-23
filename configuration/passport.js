@@ -10,11 +10,9 @@ passport.use(new LocalStrategy({
 (username, password, done) => {
   User.findOne({ email: username}, (err, user) => {
     if(err){
-      console.log('err');
       return done(err);
     }
     if(!user){
-      console.log('!user');
       return done(null, false, {message: 'User not found'});
     }
     user.comparePassword(password, user.password, (err, isMatch) => {
@@ -24,7 +22,6 @@ passport.use(new LocalStrategy({
       if(isMatch) {
         return done(null, user);
       } else {
-        console.log('compare password');
         return done(null, false, {message: 'Password is wrong'});
       }
     });

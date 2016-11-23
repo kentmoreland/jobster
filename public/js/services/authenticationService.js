@@ -47,7 +47,6 @@ jobster.service('authentication', ['$http', '$window', function ($http, $window)
   login = (user) => {
     return $http.post('/api/login', user)
     .success((data) => {
-      console.log(data);
       saveToken(data.token);
     });
   };

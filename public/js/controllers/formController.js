@@ -60,7 +60,7 @@ jobster.factory('jobData', ($http, authentication) => {
         method: 'GET',
         url: 'api/job',
         headers: {
-          Authorization: 'Bearer' + authentication.getToken()
+          Authorization: 'Bearer '+ authentication.getToken()
         }
       });
     },
@@ -88,7 +88,7 @@ jobster.controller('jobDisplayController', ['$scope', 'jobData', ($scope, jobDat
   };
 }]);
 
-jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authorization', ($scope, $http, jobData, authorization) => {
+jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authentication', ($scope, $http, jobData, authentication) => {
   const s = $scope;
   const id = jobData.getId();
   const getJobDetails = (jid) => {
@@ -104,7 +104,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'author
       method: 'PUT',
       url: `api/job/${id}`,
       headers: {
-        Authorization: 'Bearer' + authorization.getToken()
+        Authorization: 'Bearer '+ authentication.getToken()
       },
       data: {
         status: s.status,
