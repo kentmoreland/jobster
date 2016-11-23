@@ -10,7 +10,6 @@ angular.module('jobster.login', [])
     authentication
       .login(s.credentials)
       .error((err) => {
-        console.log(s.credentials);
         alert(err);
       })
       .then(() => {

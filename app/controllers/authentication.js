@@ -1,6 +1,6 @@
-const passport = require('passport');
 const mongoose = require('mongoose');
 const User = require('../model/user');
+const passport = require('passport');
 const bcrypt = require('bcrypt');
 
 const saltRounds = 10;
@@ -29,7 +29,6 @@ module.exports = {
 
   login: (req, res, next) => {
     passport.authenticate('local', (err, user, info) => {
-      console.log(user);
       let token;
       if(err){
         res.status(404).json(err);

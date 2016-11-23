@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+
 
 const Schema = mongoose.Schema;
 
@@ -11,13 +13,12 @@ const UserSchema = new Schema(
   }
 );
 
-UserSchema.methods.comparePassword = (candidatePassword, cb) => {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
+UserSchema.methods.comparePassword = (candidatePassword, hash, callback) => {
+  bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if(err){
-      return cb(err);
+      return err;
     }
-    cb(null, isMatch);
-
+    callback(null, isMatch);
   });
 };
 

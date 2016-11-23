@@ -8,19 +8,25 @@ passport.use(new LocalStrategy({
 },
 
 (username, password, done) => {
-  console.log(username);
-  User.findOne({'email': '"' + username + '"'}, (err, user) => {
-    console.log(user);
+  User.findOne({ email: username}, (err, user) => {
     if(err){
+      console.log('err');
       return done(err);
     }
     if(!user){
+      console.log('!user');
       return done(null, false, {message: 'User not found'});
     }
-    if(!user.validPassword(password)){
-      return done(null, false, {message: 'Password is wrong'});
-    }
-    return done(null, user);
+    user.comparePassword(password, user.password, (err, isMatch) => {
+      if(err){
+        return err;
+      }
+      if(isMatch) {
+        return done(null, user);
+      } else {
+        console.log('compare password');
+        return done(null, false, {message: 'Password is wrong'});
+      }
+    });
   });
-}
-));
+}));
