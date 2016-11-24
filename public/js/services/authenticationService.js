@@ -1,5 +1,6 @@
 angular.module('jobster', []);
-jobster.service('authentication', ['$http', '$window', function ($http, $window) {
+jobster.service('authentication', ['$rootScope','$http', '$window', function ($rootScope, $http, $window) {
+
   saveToken = (token) => {
     $window.localStorage['mean-token'] = token;
   };
@@ -8,13 +9,16 @@ jobster.service('authentication', ['$http', '$window', function ($http, $window)
   };
 
   logout = () => {
+    $rootScope.loggedIn = false;
     $window.localStorage.removeItem('mean-token');
+
   };
 
   isLoggedIn = () => {
     let token = getToken();
     let payload;
     if(token){
+      $rootScope.loggedIn = true;
       payload = token.split('.')[1];
       payload = $window.atob(payload);
       payload = JSON.parse(payload);
@@ -26,6 +30,7 @@ jobster.service('authentication', ['$http', '$window', function ($http, $window)
 
   currentUser = () => {
     if(isLoggedIn()){
+      $rootScope.loggedIn = true;
       let token = getToken();
       let payload = token.split('.')[1];
       payload = $window.atob(payload);
@@ -38,6 +43,7 @@ jobster.service('authentication', ['$http', '$window', function ($http, $window)
   };
 
   register = (user) => {
+    $rootScope.loggedIn = true;
     return $http.post('/api/register', user)
     .success((data) => {
       saveToken(data.token);
@@ -45,6 +51,7 @@ jobster.service('authentication', ['$http', '$window', function ($http, $window)
   };
 
   login = (user) => {
+    $rootScope.loggedIn = true;
     return $http.post('/api/login', user)
     .success((data) => {
       saveToken(data.token);
