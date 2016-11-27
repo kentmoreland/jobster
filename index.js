@@ -47,6 +47,9 @@ app.route('/api/job')
    .get(auth, job.getJobs)
    .post(auth, job.postJob);
 
+app.route('/api/jobs/:userid')
+   .get(auth, job.getUserJobs);
+
 app.route('/api/job/:id')
    .get(auth, job.getJob)
    .delete(auth, job.deleteJob)

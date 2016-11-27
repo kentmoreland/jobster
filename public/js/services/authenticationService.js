@@ -24,6 +24,7 @@ jobster.service('authentication', ['$rootScope','$http', '$window', function ($r
       payload = JSON.parse(payload);
       return payload.exp > Date.now() / 1000;
     } else {
+      $rootScope.loggedIn = false;
       return false;
     }
   };
@@ -35,9 +36,11 @@ jobster.service('authentication', ['$rootScope','$http', '$window', function ($r
       let payload = token.split('.')[1];
       payload = $window.atob(payload);
       payload = JSON.parse(payload);
+      console.log(payload);
       return {
         email: payload.email,
-        name: payload.name
+        name: payload.name,
+        user_id: payload._id,
       };
     }
   };
@@ -51,10 +54,10 @@ jobster.service('authentication', ['$rootScope','$http', '$window', function ($r
   };
 
   login = (user) => {
-    $rootScope.loggedIn = true;
     return $http.post('/api/login', user)
     .success((data) => {
       saveToken(data.token);
+      $rootScope.loggedIn = true;
     });
   };
 

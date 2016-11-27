@@ -4,7 +4,7 @@ angular.module('jobster.nav', [])
   s.isLoggedIn = authentication.isLoggedIn();
   s.currentUser = authentication.currentUser();
   s.logout = () => {
-    $rootScope.currentUserSignedIn = false;
+    $rootScope.loggedIn = false;
     authentication.logout();
   };
 }]);

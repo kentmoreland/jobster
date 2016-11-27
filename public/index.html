@@ -12,11 +12,11 @@
 <body>
   <nav class="navbar navbar-default navigation" ng-controller="navigationCtrl">
     <ul class="nav navbar-nav">
-      <li>
+      <li ng-hide="loggedIn">
         <a ui-sref="register">Register</a>
       </li>
       <li ng-show="loggedIn">
-        <a ui-sref="jobs">   {{ currentUser.email }} Jobs List</a>
+        <a ui-sref="jobs"> Jobs List</a>
       </li>
       <li ng-hide="loggedIn" >
         <a ui-sref="login">Login</a>

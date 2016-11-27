@@ -56,10 +56,20 @@ jobster.factory('jobData', ($http, authentication) => {
       return localStorage.getItem('currid');
     },
     getJobs: () => {
-      
+
       return $http({
         method: 'GET',
         url: 'api/job',
+        headers: {
+          Authorization: 'Bearer '+ authentication.getToken()
+        }
+      });
+    },
+    getUserJobs: () => {
+      let id = authentication.currentUser().user_id;
+      return $http({
+        method: 'GET',
+        url: `api/jobs/${id}`,
         headers: {
           Authorization: 'Bearer '+ authentication.getToken()
         }
@@ -80,7 +90,7 @@ jobster.factory('jobData', ($http, authentication) => {
 
 jobster.controller('jobDisplayController', ['$scope', 'jobData', ($scope, jobData) => {
   const s = $scope;
-  jobData.getJobs()
+  jobData.getUserJobs()
     .success((data) => {
       s.jobs = data;
     });

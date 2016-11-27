@@ -7,7 +7,7 @@ routerApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', (
     templateUrl: 'views/register.html',
   })
   .state('form', {
-    url: '/home',
+    url: '/form',
     templateUrl: 'views/form.html',
   })
   .state('jobs', {

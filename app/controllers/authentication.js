@@ -10,13 +10,15 @@ module.exports = {
 
   register: (req, res) => {
     let user = new User();
-
     user.name = req.body.name;
     user.email = req.body.email;
 
     bcrypt.hash(req.body.password, saltRounds, (err, hash) => {
       user.password = hash;
       user.save((err) => {
+        if(err){
+          console.log(err);
+        }
         let token;
         token = user.generateJwt(user);
         res.status(200);

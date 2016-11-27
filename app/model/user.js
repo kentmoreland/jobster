@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
+const jobs = require('./job');
 
 
 const Schema = mongoose.Schema;
@@ -10,6 +11,7 @@ const UserSchema = new Schema(
     name: {type: String},
     email:  String,
     password: String,
+    jobs: [{type: Schema.Types.ObjectId, ref: 'jobs.job'}]
   }
 );
 

@@ -1,9 +1,11 @@
 const mongoose = require('mongoose');
+const User = require('./user');
 
 const Schema = mongoose.Schema;
 
 const JobSchema = new Schema(
   {
+    _user: { type: String, ref: 'User.user'},
     company: { type: String, required: true },
     title: { type: String, required: true },
     description: { type: String },
