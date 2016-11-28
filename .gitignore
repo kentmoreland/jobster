@@ -3,8 +3,10 @@ logs
 *.log
 npm-debug.log*
 
-#config file
+#config file/awsInfo
 configuration/config.js
+configuration/awsInfo.txt
+
 
 # Dependencies
 node_modules/
