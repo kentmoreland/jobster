@@ -9,14 +9,14 @@
         <button class="btn btn-danger" ng-click="delete = !delete">Delete</button>
     </span>
     <span>
-      <button class="btn btn-warning" ng-hide="!delete" ng-click="deleteJob(jobDetails._id)">Confirm</button>
+      <button class="btn btn-warning" ng-hide="!delete" ng-click="deleteJob(jobDetails._id); delete = !delete">Confirm</button>
     </span>
   </div>
   <div>
-    <p class="error" ng-hide="!delete">Confirm deletion of <span class="additb">{{ jobDetails.company }}</span></p>
+    <p class="error additb" ng-hide="!deleted">Job Successfully Deleted!</p>
+    <p class="error" ng-hide="!delete" ng-hide="deleted" >Confirm deletion of <span class="additb">{{ jobDetails.company }}</span></p>
   </div>
-  <section>
-    <table class="table table-hover">
+    <table class="table table-hover" ng-hide="deleted">
       <tbody>
         <tr>
           <th scope="row">Status</th>
@@ -147,5 +147,4 @@
         </tr>
       </tbody>
     </table>
-  </section>
 </section>

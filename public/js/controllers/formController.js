@@ -1,6 +1,6 @@
 const jobster = angular.module('jobster.controllers', []);
 
-jobster.controller('formController', ['$scope', '$http', function ($scope, $http) {
+jobster.controller('formController', ['$scope', '$http', 'authentication', function ($scope, $http, authentication) {
   const s = $scope;
   const clearForm = () => {
     s.status = '';
@@ -19,10 +19,15 @@ jobster.controller('formController', ['$scope', '$http', function ($scope, $http
     s.cover_letter = '';
   };
   s.addJob = () => {
+    let id = authentication.currentUser().user_id;
     $http({
       method: 'POST',
       url: '/api/job',
+      headers: {
+        Authorization: 'Bearer '+ authentication.getToken()
+      },
       data: {
+        user: id,
         company: s.company,
         title: s.title,
         description: s.description,
@@ -56,7 +61,6 @@ jobster.factory('jobData', ($http, authentication) => {
       return localStorage.getItem('currid');
     },
     getJobs: () => {
-
       return $http({
         method: 'GET',
         url: 'api/job',
@@ -80,7 +84,7 @@ jobster.factory('jobData', ($http, authentication) => {
         method: 'GET',
         url: `api/job/${id}`,
         headers: {
-          Authorization: 'Bearer' + authentication.getToken()
+          Authorization: 'Bearer '+ authentication.getToken()
         }
       });
     },
@@ -111,6 +115,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
   getJobDetails(id);
 
   s.updateJob = (id) => {
+    let uid = authentication.currentUser().user_id;
     $http({
       method: 'PUT',
       url: `api/job/${id}`,
@@ -118,6 +123,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
         Authorization: 'Bearer '+ authentication.getToken()
       },
       data: {
+        user: uid,
         status: s.status,
         company: s.company,
         title: s.title,
@@ -138,16 +144,21 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
       });
   };
 
+  jobDeleted = () => {
+    s.deleted = true;
+  };
+
   s.deleteJob = (id) => {
     let url = `api/job/${id}`;
     $http.delete(url,{
       method: 'DELETE',
       url: url,
       headers: {
-        Authorization: 'Bearer' + authentication.getToken()
+        Authorization: 'Bearer '+ authentication.getToken()
       }
     })
-        .success(() => {
-        });
+    .success(() => {
+      jobDeleted();
+    });
   };
 }]);

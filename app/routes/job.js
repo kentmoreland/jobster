@@ -3,9 +3,9 @@ let Job = require('../model/job');
 let User = require('../model/user');
 
 module.exports = {
-  
+
   getUserJobs: (req, res) => {
-    let query = Job.find({ _user : req.params.userid });
+    let query = Job.find({ user : req.params.userid });
     query.exec((err, jobs) => {
       if(err){
         console.log(err);
@@ -30,7 +30,7 @@ module.exports = {
 
   postJob: (req, res) => {
     let newJob = new Job(req.body);
-
+    console.log(newJob);
     newJob.save((err, job) => {
       if(err){
         return ( res.send(err) );
