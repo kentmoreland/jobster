@@ -14,7 +14,7 @@ require('./configuration/passport');
 
 //configure jwt
 const auth = jwt({
-  secret: 'kentified',
+  secret: config.secret,
   userProperty: 'payload'
 });
 

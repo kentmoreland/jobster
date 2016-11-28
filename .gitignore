@@ -3,6 +3,9 @@ logs
 *.log
 npm-debug.log*
 
+#config file
+configuration/config.js
+
 # Dependencies
 node_modules/
 public/libs/
