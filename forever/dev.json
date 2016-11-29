@@ -1,0 +1,7 @@
+{
+  "uid": "jobster",
+  "append": true,
+  "watch": true,
+  "script": "index.js",
+  "sourceDir": "/home/ubuntu/jobster"
+}
