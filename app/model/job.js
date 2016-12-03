@@ -12,6 +12,7 @@ const JobSchema = new Schema(
     link: { type: String, required: true },
     city: { type: String, required: true },
     state: { type: String, required: true },
+    website: { type: String },
     applyDate: { type: Date },
     compensation: { type: Number },
     rangeh: { type: Number },

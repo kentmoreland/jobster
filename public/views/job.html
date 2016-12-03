@@ -16,135 +16,144 @@
     <p class="error additb" ng-hide="!deleted">Job Successfully Deleted!</p>
     <p class="error" ng-hide="!delete" ng-hide="deleted" >Confirm deletion of <span class="additb">{{ jobDetails.company }}</span></p>
   </div>
-    <table class="table table-hover" ng-hide="deleted">
-      <tbody>
-        <tr>
-          <th scope="row">Status</th>
-          <td>
-            <span ng-hide="!edit">
-              <select name="status" ng-model="status">
-                <option value="">---Please select---</option>
-                <option value="queued">Queued</option>
-                <option value="applied">Applied</option>
-                <option value="in_progress">In Progress</option>
-                <option value="rejected">Rejected</option>
-              </select>
-            </span>
-            {{ jobDetails.status }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Company</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="company" placeholder="{{ jobDetails.company }}">
-            </span>
-            {{ jobDetails.company }}
+  <table class="table table-hover" ng-hide="deleted">
+    <tbody>
+      <tr>
+        <th scope="row">Status</th>
+        <td>
+          <span ng-hide="!edit">
+            <select name="status" ng-model="status">
+              <option value="">---Please select---</option>
+              <option value="queued">Queued</option>
+              <option value="applied">Applied</option>
+              <option value="in_progress">In Progress</option>
+              <option value="rejected">Rejected</option>
+            </select>
+          </span>
+          {{ jobDetails.status }}
         </td>
-        </tr>
-        <tr>
-          <th scope="row">Title</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="title" placeholder="What's the job Title?">
-            </span>
-            {{ jobDetails.title }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Link</th>
-          <td>
-            <span ng-hide="!edit">
-            <input type="text" ng-model="link" placeholder="Link to the Job">
-            </span>
-            {{ jobDetails.link }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">City</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="city" placeholder="What city?">
-            </span>
-            {{ jobDetails.city }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">State</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="state" placeholder="What state?">
-            </span>
-            {{ jobDetails.state }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Date Applied</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="Date" ng-model="application_date">
-            </span>
-            {{ jobDetails.applyDate | date }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Compensation: <span class="addit">Number</span></th>
-          <td>
-            <span ng-hide="!edit">
-            <input type="text" ng-model="compensation" placeholder="What's the pay?">
-            </span>
-            {{ jobDetails.compensation }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Compensation <span>Range: High Number</span></th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="rangeh" placeholder="Range High">
-            </span>
-            {{ jobDetails.rangeh }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Compensation
-            <span>Range: Low Number </span>Range: Low Number</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="rangel" placeholder="Range Low">
-            </span>
-            {{ jobDetails.rangel }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Site Found</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="site_found" placeholder="What site did you find the job?">
-            </span>
-            {{ jobDetails.siteFound }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Site Applied</th>
-          <td>
-            <span ng-hide="!edit">
-              <input type="text" ng-model="site_applied" placeholder="What site did you Apply?">
-            </span>
-            {{ jobDetails.siteApplied }}
-          </td>
-        </tr>
-        <tr>
-          <th scope="row">Job Description</th>
-          <td>
-            <span ng-hide="!edit">
-              <textarea rows="8" cols="20" ng-model="description" placeholder="Copy and paste the job description."></textarea>
-            </span>
-              {{ jobDetails.Description }}
-            <div>
-              <button class="btn btn-secondary" ng-hide="!edit" ng-click="updateJob(jobDetails._id); edit = !edit">Update</button>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+      </tr>
+      <tr>
+        <th scope="row">Company</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="company" placeholder="Company">
+          </span>
+          {{ jobDetails.company }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Title</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="title" placeholder="Title">
+          </span>
+          {{ jobDetails.title }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Link</th>
+        <td>
+          <span ng-hide="!edit">
+          <input type="text" ng-model="link" placeholder="Link">
+          </span>
+          {{ jobDetails.link }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">City</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="city" placeholder="City">
+          </span>
+          {{ jobDetails.city }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">State</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="state" placeholder="State">
+          </span>
+          {{ jobDetails.state }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Company Website</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="website" placeholder="Company Website">
+          </span>
+          {{ jobDetails.website }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Date Applied</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="Date" ng-model="application_date">
+          </span>
+          {{ jobDetails.applyDate | date }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Compensation: <span class="addit">Number</span></th>
+        <td>
+          <span ng-hide="!edit">
+          <input type="text" ng-model="compensation" placeholder="Compensation">
+          </span>
+          {{ jobDetails.compensation }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Compensation <span>Range: High Number</span></th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="rangeh" placeholder="Range High">
+          </span>
+          {{ jobDetails.rangeh }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Compensation
+          <span>Range: Low Number </span>Range: Low Number</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="rangel" placeholder="Range Low">
+          </span>
+          {{ jobDetails.rangel }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Site Found</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="site_found" placeholder="Site Found">
+          </span>
+          {{ jobDetails.siteFound }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Site Applied</th>
+        <td>
+          <span ng-hide="!edit">
+            <input type="text" ng-model="site_applied" placeholder="Site Applied">
+          </span>
+          {{ jobDetails.siteApplied }}
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">Job Description</th>
+        <td>
+          <span ng-hide="!edit">
+            <textarea rows="8" cols="20" ng-model="description" placeholder="Copy and paste the job description."></textarea>
+          </span>
+            {{ jobDetails.description }}
+          <div>
+            <button class="btn btn-secondary" ng-hide="!edit" ng-click="updateJob(jobDetails._id); edit = !edit">Update</button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
 </section>

@@ -10,6 +10,7 @@ jobster.controller('formController', ['$scope', '$http', 'authentication', funct
     s.link = '';
     s.city = '';
     s.state = '';
+    s.website = '';
     s.application_date = '';
     s.compensation = '';
     s.rangeh = '';
@@ -34,6 +35,7 @@ jobster.controller('formController', ['$scope', '$http', 'authentication', funct
         link: s.link,
         city: s.city,
         state: s.state,
+        website: s.website,
         applyDate: s.application_date,
         compensation: s.compensation,
         rangeh: s.rangeh,
@@ -130,6 +132,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
         link: s.link,
         city: s.city,
         state: s.state,
+        website: s.website,
         applyDate: s.application_date,
         compensation: s.compensation,
         rangeh: s.rangeh,
