@@ -1,82 +1,183 @@
 <section ng-controller='formController'>
   <div class="container-fluid form-container">
-      <h1 class="header1">Get Started</h1>
-      <hr class="xmargin-btm">
-      <!-- form -->
-      <form class="form" novalidate>
-        <div class="status-btn">
-          <div>
-            <label class="field-label" for="status">Status:</label>
-          </div>
-          <select name="status" ng-model="status">
-            <option value="">---Please select---</option>
-            <option value="queued">Queued</option>
-            <option value="applied">Applied</option>
-            <option value="in_progress">In Progress</option>
-            <option value="rejected">Rejected</option>
-          </select>
+    <h1 class="header1">Get Started</h1>
+    <hr class="xmargin-btm">
+    <h1 ng-show="formSubmit">Application Entered Successfully!</h1>
+    <div>
+      <span ng-show="formSubmit"><a ui-sref="jobs"><button class="btn btn-default">Job List</button></a></span>
+      <span ng-show="formSubmit"><button class="btn btn-default" ng-click="reloadRoute()">Job Entry</button></span>
+    </div>
+    <!-- form -->
+    <form class="form" name="newJob" ng-hide="formSubmit" novalidate>
 
-          <!-- company -->
-          <div>
-            <label class="field-label"> Company information: </label>
-          </div>
-          <input class="input" type="text" ng-model="company" placeholder="Company">
-
-          <!-- title -->
-          <input class="input" type="text" ng-model="title" placeholder="Title">
-
-          <!-- city -->
-          <input class="input" type="text" ng-model="city" placeholder="City">
-
-          <!-- state -->
-          <input class="input" type="text" ng-model="state" placeholder="State">
-
-          <!-- website -->
-          <input class="input" type="text" ng-model="website" placeholder="Company Website">
-
-          <div>
-            <label class="field-label"> Application Specifications: </label>
-          </div>
-
-          <!-- link -->
-          <input class="input" type="text" ng-model="link" placeholder="Link">
-
-          <!-- date -->
-          <input class="input" type="Date" ng-model="application_date">
-
-          <!-- sitefound -->
-          <input class="input" type="text" ng-model="site_found" placeholder="Site Found">
-
-          <!-- siteapplied -->
-          <input class="input" type="text" ng-model="site_applied" placeholder="Site Applied">
-
-          <!-- compensation listed yes -->
-          <div class="field-spacing">
-            <input class="input" type="checkbox" name="compensation_listed" ng-model="compensation_listed" ng-true-value="'yes'" ng-false-value="'no'"> Add Compensation
-          </div>
-
-          <!-- compensation listed no -->
-          <fieldset class="field-spacing" ng-show="compensation_listed === 'yes'">
-
-            <!-- range -->
-            <input class="input" name="compensation_type" type="radio" ng-model="compensation_type" value="range">Range
-
-            <!-- dollar -->
-            <input class="input" type="radio" name="compensation_type" ng-model="compensation_type" value="dollar_amount">Dollar Amount
-
-            <!-- compensation -->
-            <input class="input" type="text" ng-model="compensation" ng-hide="compensation_type === 'range'" placeholder="Compensation">
-
-            <!-- rangeh -->
-            <input class="input" type="text" ng-model="rangeh" placeholder="Range High" ng-hide="compensation_type === 'dollar_amount'">
-
-            <!-- rangel -->
-            <input class="input" type="text" ng-model="rangel" placeholder="Range Low" ng-hide="compensation_type === 'dollar_amount'">
-          </fieldset>
-          <div>
-          <input type="submit" ng-click="addJob()" class="btn btn-default">
-          </div>
+      <div class="status-btn">
+        <div>
+          <label class="field-label" for="status">Status:</label>
         </div>
-      </form>
+
+        <select name="status" ng-model="status" required>
+          <option value="">Select Status</option>
+          <option value="queued">Queued</option>
+          <option value="applied">Applied</option>
+          <option value="in_progress">In Progress</option>
+          <option value="rejected">Rejected</option>
+        </select>
+      </div>
+
+      <div>
+        <label class="field-label"> Company information: </label>
+      </div>
+
+      <!-- status error: -->
+      <div class="form-error" ng-show="newJob.company.$touched && newJob.company.$invalid && newJob.company.$error.required">Application status is required</div>
+
+
+      <!-- company error: -->
+      <div class="form-error" ng-show="newJob.company.$dirty && newJob.company.$invalid && newJob.company.$error.required">Company name is required</div>
+
+      <!-- title error -->
+      <div class="form-error" ng-show="newJob.title.$dirty && newJob.title.$invalid && newJob.title.$error.required"> Title is required</div>
+
+      <!-- city error -->
+      <div class="form-error" ng-show="newJob.city.$dirty && newJob.city.$invalid && newJob.city.$error.required"> City is required</div>
+
+      <!-- state error -->
+      <div class="form-error" ng-show="newJob.state.$touched && newJob.state.$invalid && newJob.state.$error.required"> State is required</div>
+
+      <!-- link error -->
+      <div class="form-error" ng-show="newJob.link.$dirty && newJob.link.$invalid && newJob.link.$error.required"> Application link is required</div>
+
+      <!-- date error -->
+      <div class="form-error" ng-show="newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.required"> Application date is required</div>
+
+      <!-- date max error -->
+      <div class="form-error" ng-show="newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.max"> Check the date, it's a little far in the future.</div>
+
+      <!-- date min error -->
+      <div class="form-error" ng-show="newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.min"> Check the date, it's a little far in the past.</div>
+
+
+      <!-- site Found error -->
+      <div class="form-error" ng-show="newJob.siteFound.$dirty && newJob.siteFound.$invalid && newJob.siteFound.$error.required"> Site found is required</div>
+
+      <!-- site Applied error -->
+      <div class="form-error" ng-show="newJob.siteApplied.$dirty && newJob.siteApplied.$invalid && newJob.siteApplied.$error.required">Site applied is required</div>
+
+      <!-- company -->
+      <input name="company" class="input" type="text" ng-model="company" placeholder="Company Name" maxlength="100" required>
+
+      <!-- title -->
+      <input name="title" class="input" type="text" ng-model="title" placeholder="Job Title" maxlength="100" required>
+
+      <!-- city -->
+      <input name="city" class="input" type="text" ng-model="city" placeholder="City" maxlength="100" required>
+
+      <!-- state -->
+      <select name="state" class="input" ng-model="state" required>
+        <option value="">Select State</option>
+      	<option value="AL">Alabama</option>
+      	<option value="AK">Alaska</option>
+      	<option value="AZ">Arizona</option>
+      	<option value="AR">Arkansas</option>
+      	<option value="CA">California</option>
+      	<option value="CO">Colorado</option>
+      	<option value="CT">Connecticut</option>
+      	<option value="DE">Delaware</option>
+      	<option value="DC">District Of Columbia</option>
+      	<option value="FL">Florida</option>
+      	<option value="GA">Georgia</option>
+      	<option value="HI">Hawaii</option>
+      	<option value="ID">Idaho</option>
+      	<option value="IL">Illinois</option>
+      	<option value="IN">Indiana</option>
+      	<option value="IA">Iowa</option>
+      	<option value="KS">Kansas</option>
+      	<option value="KY">Kentucky</option>
+      	<option value="LA">Louisiana</option>
+      	<option value="ME">Maine</option>
+      	<option value="MD">Maryland</option>
+      	<option value="MA">Massachusetts</option>
+      	<option value="MI">Michigan</option>
+      	<option value="MN">Minnesota</option>
+      	<option value="MS">Mississippi</option>
+      	<option value="MO">Missouri</option>
+      	<option value="MT">Montana</option>
+      	<option value="NE">Nebraska</option>
+      	<option value="NV">Nevada</option>
+      	<option value="NH">New Hampshire</option>
+      	<option value="NJ">New Jersey</option>
+      	<option value="NM">New Mexico</option>
+      	<option value="NY">New York</option>
+      	<option value="NC">North Carolina</option>
+      	<option value="ND">North Dakota</option>
+      	<option value="OH">Ohio</option>
+      	<option value="OK">Oklahoma</option>
+      	<option value="OR">Oregon</option>
+      	<option value="PA">Pennsylvania</option>
+      	<option value="RI">Rhode Island</option>
+      	<option value="SC">South Carolina</option>
+      	<option value="SD">South Dakota</option>
+      	<option value="TN">Tennessee</option>
+      	<option value="TX">Texas</option>
+      	<option value="UT">Utah</option>
+      	<option value="VT">Vermont</option>
+      	<option value="VA">Virginia</option>
+      	<option value="WA">Washington</option>
+      	<option value="WV">West Virginia</option>
+      	<option value="WI">Wisconsin</option>
+      	<option value="WY">Wyoming</option>
+      </select>
+      <!-- <input name="state" class="input" type="text" ng-model="state" placeholder="State" required> -->
+
+      <!-- website -->
+      <input class="input" type="text" ng-model="website" maxlength="100" placeholder="Company Website">
+
+      <div>
+        <label class="field-label"> Application Specifications: </label>
+      </div>
+
+      <!-- link -->
+      <input name="link" class="input" type="text" ng-model="link" placeholder="Job Application Link" maxlength="100" required>
+
+      <!-- date -->
+      <input name="date" class="input" type="Date" ng-model="application_date" min="2000-01-01" max="{{ max }}" required>
+
+      <!-- sitefound -->
+      <input name="siteFound" class="input" type="text" ng-model="site_found" placeholder="Site Found" maxlength="100" required>
+
+      <!-- siteapplied -->
+      <input name="siteApplied" class="input" type="text" ng-model="site_applied" placeholder="Site Applied" maxlength="100" required>
+
+      <!-- compensation listed yes -->
+      <div class="field-spacing">
+        <input class="input" type="checkbox" name="compensation_listed" ng-model="compensation_listed" ng-true-value="'yes'" ng-false-value="'no'"> Add Compensation
+      </div>
+
+      <!-- compensation listed no -->
+      <fieldset class="field-spacing" ng-show="compensation_listed === 'yes'">
+
+        <!-- range -->
+        <input class="input" name="compensation_type" type="radio" ng-model="compensation_type" value="range" ng-checked="true">Range
+
+        <!-- dollar -->
+        <input class="input" type="radio" name="compensation_type" ng-model="compensation_type" value="dollar_amount"/>Dollar Amount
+
+        <!-- compensation -->
+        <input class="input" type="number" ng-model="compensation" ng-hide="compensation_type !== 'dollar_amount'" step="50" max="1000000" min="0" placeholder="Yearly">
+
+        <!-- rangeh -->
+        <input class="input" type="number" ng-model="rangeh" placeholder="High" ng-hide="compensation_type === 'dollar_amount'" step="5" max="1000000" min="0">
+
+        <!-- rangel -->
+        <input class="input" type="number" ng-model="rangel" placeholder="Low" ng-hide="compensation_type === 'dollar_amount'" step="5" max="1000000" min="0">
+      </fieldset>
+
+      <textarea name="description" class="input margin-b-1" rows="8" cols="115" ng-model="description" maxlength="10000" placeholder="Job Description."></textarea>
+
+      <div>
+        <input type="submit" ng-click="addJob(); formSubmit=true" ng-disabled="newJob.$invalid" class="btn btn-default">
+      </div>
+
+    </form>
   </div>
 </section>

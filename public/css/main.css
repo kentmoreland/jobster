@@ -62,6 +62,13 @@ input[type=checkbox]
   padding: 10px;
 }
 
+textarea {
+  border-width: 2px;
+  border-style: inset;
+  border-color: initial;
+  border-image: initial;
+}
+
 .checkboxtext
 {
   /* Checkbox text */
@@ -70,4 +77,18 @@ input[type=checkbox]
 }
 .xmargin-btm {
   margin-bottom: 0em;
+}
+.form-error {
+  background-color: red;
+  color: white;
+  margin: 0 20em 1em;
+  border-radius: 5px;
+}
+
+.margin-b-1 {
+  margin-bottom: 1em;
+}
+
+.test {
+  border-color: red;
 }

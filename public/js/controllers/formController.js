@@ -1,7 +1,15 @@
 const jobster = angular.module('jobster.controllers', []);
 
-jobster.controller('formController', ['$scope', '$http', 'authentication', function ($scope, $http, authentication) {
+jobster.controller('formController', ['$scope', '$http','$state', 'authentication', function ($scope, $http, $state, authentication) {
   const s = $scope;
+  date = new Date();
+  s.application_date = date;
+  s.max = date.getFullYear() + 1 + '-12-31';
+
+  s.reloadRoute = () => {
+    $state.reload();
+  };
+
   const clearForm = () => {
     s.status = '';
     s.company = '';
