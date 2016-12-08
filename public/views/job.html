@@ -102,7 +102,7 @@
           <span ng-hide="!edit">
           <input type="text" ng-model="compensation" placeholder="Compensation">
           </span>
-          {{ jobDetails.compensation }}
+          {{ jobDetails.compensation | currency }}
         </td>
       </tr>
       <tr>
@@ -111,7 +111,7 @@
           <span ng-hide="!edit">
             <input type="text" ng-model="rangeh" placeholder="Range High">
           </span>
-          {{ jobDetails.rangeh }}
+          {{ jobDetails.rangeh | currency }}
         </td>
       </tr>
       <tr>
@@ -121,7 +121,7 @@
           <span ng-hide="!edit">
             <input type="text" ng-model="rangel" placeholder="Range Low">
           </span>
-          {{ jobDetails.rangel }}
+          {{ jobDetails.rangel | currency }}
         </td>
       </tr>
       <tr>
