@@ -13,6 +13,7 @@ describe('Users', () => {
       done();
     });
   });
+
   describe('/GET user', () => {
     it('should GET all of the users', (done) => {
       chai.request(server)
@@ -24,12 +25,14 @@ describe('Users', () => {
           done();
         });
     });
+
     it('should add a new user', (done) => {
       let user = {
         name: 'Kent',
         email: 'kentmoreland@gmail.com',
         password: 'password',
       };
+
       chai.request(server)
         .post('/api/user')
         .send(user)

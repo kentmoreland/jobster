@@ -7,15 +7,13 @@ const should = chai.should();
 
 chai.use(chaiHttp);
 
-// parent block
 describe('Jobs', () => {
-  beforeEach((done) => { //Before each test we empty the database
+  beforeEach((done) => {
     Job.remove({}, () => {
       done();
     });
   });
 
-    // Test the /GET route
   describe('/GET job', () => {
     it('should GET all the jobs', (done) => {
       chai.request(server)

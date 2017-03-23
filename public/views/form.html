@@ -2,6 +2,43 @@
   <div class="container-fluid form-container">
     <h1 class="header1">Get Started</h1>
     <hr class="xmargin-btm">
+
+      <!-- status error: -->
+      <div class="alert alert-danger form-error" ng-show="newJob.status.$touched && newJob.status.$invalid && newJob.status.$error.required">Application status is required</div>
+
+
+      <!-- company error: -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.company.$dirty && newJob.company.$invalid && newJob.company.$error.required">Company name is required</div>
+
+      <!-- title error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.title.$dirty && newJob.title.$invalid && newJob.title.$error.required"> Title is required</div>
+
+      <!-- city error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.city.$dirty && newJob.city.$invalid && newJob.city.$error.required"> City is required</div>
+
+      <!-- state error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.state.$touched && newJob.state.$invalid && newJob.state.$error.required"> State is required</div>
+
+      <!-- link error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.link.$dirty && newJob.link.$invalid && newJob.link.$error.required"> Application link is required</div>
+
+      <!-- date error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.required"> Application date is required</div>
+
+      <!-- date max error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.max"> Check the date, it's a little far in the future.</div>
+
+      <!-- date min error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.min"> Check the date, it's a little far in the past.</div>
+
+
+      <!-- site Found error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.siteFound.$dirty && newJob.siteFound.$invalid && newJob.siteFound.$error.required"> Site found is required</div>
+
+      <!-- site Applied error -->
+      <div class="alert alert-danger form-error" ng-show=" newJob.siteApplied.$dirty && newJob.siteApplied.$invalid && newJob.siteApplied.$error.required">Site applied is required</div>
+
+
     <h1 ng-show="formSubmit">Application Entered Successfully!</h1>
     <div>
       <span ng-show="formSubmit"><a ui-sref="jobs"><button class="btn btn-default">Job List</button></a></span>
@@ -28,40 +65,7 @@
         <label class="field-label"> Company information: </label>
       </div>
 
-      <!-- status error: -->
-      <div class="form-error" ng-show="newJob.company.$touched && newJob.company.$invalid && newJob.company.$error.required">Application status is required</div>
 
-
-      <!-- company error: -->
-      <div class="form-error" ng-show="newJob.company.$dirty && newJob.company.$invalid && newJob.company.$error.required">Company name is required</div>
-
-      <!-- title error -->
-      <div class="form-error" ng-show="newJob.title.$dirty && newJob.title.$invalid && newJob.title.$error.required"> Title is required</div>
-
-      <!-- city error -->
-      <div class="form-error" ng-show="newJob.city.$dirty && newJob.city.$invalid && newJob.city.$error.required"> City is required</div>
-
-      <!-- state error -->
-      <div class="form-error" ng-show="newJob.state.$touched && newJob.state.$invalid && newJob.state.$error.required"> State is required</div>
-
-      <!-- link error -->
-      <div class="form-error" ng-show="newJob.link.$dirty && newJob.link.$invalid && newJob.link.$error.required"> Application link is required</div>
-
-      <!-- date error -->
-      <div class="form-error" ng-show="newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.required"> Application date is required</div>
-
-      <!-- date max error -->
-      <div class="form-error" ng-show="newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.max"> Check the date, it's a little far in the future.</div>
-
-      <!-- date min error -->
-      <div class="form-error" ng-show="newJob.date.$dirty && newJob.date.$invalid && newJob.date.$error.min"> Check the date, it's a little far in the past.</div>
-
-
-      <!-- site Found error -->
-      <div class="form-error" ng-show="newJob.siteFound.$dirty && newJob.siteFound.$invalid && newJob.siteFound.$error.required"> Site found is required</div>
-
-      <!-- site Applied error -->
-      <div class="form-error" ng-show="newJob.siteApplied.$dirty && newJob.siteApplied.$invalid && newJob.siteApplied.$error.required">Site applied is required</div>
 
       <!-- company -->
       <input name="company" class="input" type="text" ng-model="company" placeholder="Company Name" maxlength="100" required>

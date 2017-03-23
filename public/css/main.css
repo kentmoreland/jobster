@@ -32,14 +32,16 @@
   padding-bottom: 2em;
 }
 
-.input {
-  border-radius: 5px;
-  margin-right: 1em;
+.user-form{
+  text-align: center;
 }
 
-::-webkit-datetime-edit {
-  color: #999;
+.form-wrapper{
+  width: 33%;
+  margin: auto;
 }
+
+
 
 .field-label {
   font-size: 21px;
@@ -79,16 +81,28 @@ textarea {
   margin-bottom: 0em;
 }
 .form-error {
-  background-color: red;
-  color: white;
   margin: 0 20em 1em;
-  border-radius: 5px;
 }
 
 .margin-b-1 {
   margin-bottom: 1em;
 }
 
-.test {
-  border-color: red;
+.input {
+  border-radius: 5px;
+  margin-right: 1em;
 }
+
+input .ng-invalid.ng-dirty{
+  color: #A94442;
+  border-color: #F2DEDE;
+}
+
+::-webkit-input-placeholder .ng-invalid.ng-dirty{
+  color: red;
+}
+
+::-webkit-datetime-edit {
+  color: #999;
+}
+
