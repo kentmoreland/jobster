@@ -2,7 +2,7 @@
   "name": "jobster",
   "version": "0.9.0",
   "description": "A web application which helps manage job applications during a job search.",
-  "main": "index.js",
+  "main": "jobster.js",
   "scripts": {
     "start": "NODE_ENV=development nodemon",
     "test": "NODE_ENV=test mocha "
