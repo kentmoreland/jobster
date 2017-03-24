@@ -15,6 +15,9 @@ const UserSchema = new Schema(
   }
 );
 
+
+// TODO: refactor these into another file.
+
 UserSchema.methods.comparePassword = (candidatePassword, hash, callback) => {
   bcrypt.compare(candidatePassword, hash, (err, isMatch) => {
     if(err){

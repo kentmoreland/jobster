@@ -1,23 +1,58 @@
 const Job = require('../app/model/job');
+const User = require('../app/model/user');
+const user = require('../app/controllers/authentication');
+const passport = require('passport');
 const chai = require('chai');
 const chaiHttp = require('chai-http');
-const server = require('../index.js');
-
+const server = require('../jobster.js');
+const mongoose = require('mongoose');
 const should = chai.should();
+const dbpath = 'mongodb://localhost/kwork-t';
 
 chai.use(chaiHttp);
 
+let testUser = {
+  name: 'Kent',
+  email: 'kentmoreland@gmail.com',
+  password: 'password',
+};
+
+let testUserAuth;
+let testUserId;
+
+mongoose.connect(dbpath, () => {
+  User.findOne({name: 'Kent'}, (err, person) => {
+    if(err){ console.log(err)}
+    testUserId = person._id;
+  });
+});
+
+
+
 describe('Jobs', () => {
+
+  before((done) => {
+    chai.request(server)
+    .post('/api/register')
+    .send(testUser)
+    .end((err, res) => {
+      testUserAuth = res.body.token;
+      done();
+    });
+  });
+
   beforeEach((done) => {
     Job.remove({}, () => {
       done();
     });
   });
 
+
   describe('/GET job', () => {
-    it('should GET all the jobs', (done) => {
+    it('should GET a joblist for a user', (done) => {
       chai.request(server)
         .get('/api/job')
+        .set('authorization', 'Bearer ' + testUserAuth)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('array');
@@ -43,6 +78,7 @@ describe('Jobs', () => {
       };
       chai.request(server)
       .post('/api/job')
+      .set('authorization', 'Bearer ' + testUserAuth)
       .send(job)
       .end((err, res) => {
         res.should.have.status(200);
@@ -71,6 +107,7 @@ describe('Jobs', () => {
       };
       chai.request(server)
       .post('/api/job')
+      .set('authorization', 'Bearer ' + testUserAuth)
       .send(job)
       .end((err, res) => {
         res.should.have.status(200);
@@ -110,6 +147,7 @@ describe('Jobs', () => {
       job.save((err, job) => {
         chai.request(server)
         .get('/api/job/' + job.id)
+        .set('authorization', 'Bearer ' + testUserAuth)
         .send(job)
         .end((err, res) => {
           res.should.have.status(200);
@@ -149,6 +187,7 @@ describe('Jobs', () => {
       job.save((err, job) => {
         chai.request(server)
       .put('/api/job/' + job.id)
+      .set('authorization', 'Bearer ' + testUserAuth)
       .send({
         company: 'Facebook',
         title: 'SWD',
@@ -191,6 +230,7 @@ describe('Jobs', () => {
       job.save((err, job) => {
         chai.request(server)
         .delete('/api/job/' + job.id)
+        .set('authorization', 'Bearer ' + testUserAuth)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.a('object');

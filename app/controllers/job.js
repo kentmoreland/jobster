@@ -30,7 +30,6 @@ module.exports = {
 
   postJob: (req, res) => {
     let newJob = new Job(req.body);
-    console.log(newJob);
     newJob.save((err, job) => {
       if(err){
         return ( res.send(err) );

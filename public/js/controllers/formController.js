@@ -55,7 +55,7 @@ jobster.controller('formController', ['$scope', '$http','$state', 'authenticatio
       },
     })
     .success(() => {
-      clearForm();
+      s.submitSuccess = true;
     })
     .error(() => {
     });

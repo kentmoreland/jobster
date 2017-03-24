@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const job = require('./app/routes/job');
+const job = require('./app/controllers/job');
 const user = require('./app/controllers/authentication');
 const livereload = require('livereload');
 let env = process.env.NODE_ENV || 'development';
@@ -70,4 +70,4 @@ app.listen(app.get('port'));
 console.log(`Connect success! Listening on port ${app.get('port')}.`);
 
 
-module.exports = app; // for testing
+module.exports = app;
