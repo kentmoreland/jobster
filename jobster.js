@@ -8,16 +8,9 @@ let env = process.env.NODE_ENV || 'development';
 const config = require('./configuration/config')[env];
 const server = livereload.createServer();
 const passport = require('passport');
-const jwt = require('express-jwt');
+const jwtConfig = require('./configuration/jwtConfig');
 require('./app/model/user');
 require('./configuration/passport');
-
-//configure jwt
-const auth = jwt({
-  secret: config.secret,
-  userProperty: 'payload'
-});
-
 
 server.watch(`${__dirname}/public`);
 
@@ -44,16 +37,16 @@ app.use(passport.initialize());
 app.get('/api', (req, res) => res.json({ message: 'Welcome to Jobster!' }));
 
 app.route('/api/job')
-   .get(auth, job.getJobs)
-   .post(auth, job.postJob);
+   .get(jwtConfig.auth, job.getJobs)
+   .post(jwtConfig.auth, job.postJob);
 
 app.route('/api/jobs/:userid')
-   .get(auth, job.getUserJobs);
+   .get(jwtConfig.auth, job.getUserJobs);
 
 app.route('/api/job/:id')
-   .get(auth, job.getJob)
-   .delete(auth, job.deleteJob)
-   .put(auth, job.updateJob);
+   .get(jwtConfig.auth, job.getJob)
+   .delete(jwtConfig.auth, job.deleteJob)
+   .put(jwtConfig.auth, job.updateJob);
 
 app.route('/api/register')
    .get(user.getUsers)
