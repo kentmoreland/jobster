@@ -42,13 +42,3 @@ routerApp.run(['$rootScope', '$state', 'authentication', ($rootScope, $state, au
   });
 }]);
 
-// routerApp.run(['$rootScope', '$location', 'authentication', ($rootScope, $location, authentication) => {
-//   run = ($rootScope, $location, authentication) => {
-//     $rootScope.$on('$stateChangeStart', (event, nextRoute, currentRoute) => {
-//       if($location.path() === '/jobs' && !authentication.isLoggedIn()) {
-//         $location.path('/login');
-//       }
-//     });
-//   };
-//
-// }]);
