@@ -1,20 +1,44 @@
+body{
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+.site-wrapper{
+  flex: 1;
+}
+
 .navigation{
   margin-bottom: 0;
 }
+
 .header {
   text-align: center;
   margin-bottom: 0;
 }
+
+footer{
+  background-color: gray;
+}
+
+.footer-content-wrapper {
+  padding-top: 1em;
+  text-align: center;
+}
+
 .form-container {
   text-align: center;
 }
+
 /*add italics to text*/
 .addit {
   font-style: italic;
 }
+
 .addb {
   font-weight: bold;
 }
+
 .additb {
   font-style: italic;
   font-weight: bold;
@@ -40,8 +64,6 @@
   width: 33%;
   margin: auto;
 }
-
-
 
 .field-label {
   font-size: 21px;
@@ -77,9 +99,11 @@ textarea {
   font-size: 110%;
   display: inline;
 }
+
 .xmargin-btm {
   margin-bottom: 0em;
 }
+
 .form-error {
   margin: 0 20em 1em;
 }

@@ -10,34 +10,41 @@
   <title>Jobster</title>
 </head>
 <body>
-  <nav class="navbar navbar-default navigation" ng-controller="navigationCtrl">
-    <ul class="nav navbar-nav">
-      <li ng-hide="loggedIn">
-        <a ui-sref="register">Register</a>
-      </li>
-      <li ng-show="loggedIn">
-        <a ui-sref="form">Job Entry</a>
-      </li>
-      <li ng-show="loggedIn">
-        <a ui-sref="jobs"> Jobs List</a>
-      </li>
-      <li ng-hide="loggedIn" >
-        <a ui-sref="login">Login</a>
-      </li>
-      <li ng-show="loggedIn"  ng-click="logout(); ">
-        <a ui-sref="login">Logout</a>
-      </li>
-    </ul>
-  </nav>
-  <header class="jumbotron header">
-    <h1>WELCOME TO JOBSTER </h1>
-    <h3>Let's submit some apps!</h3>
-  </header>
+<div class="site-wrapper">
+    <nav class="navbar navbar-default navigation" ng-controller="navigationCtrl">
+      <ul class="nav navbar-nav">
+        <li ng-hide="loggedIn">
+          <a ui-sref="register">Register</a>
+        </li>
+        <li ng-show="loggedIn">
+          <a ui-sref="form">Job Entry</a>
+        </li>
+        <li ng-show="loggedIn">
+          <a ui-sref="jobs"> Jobs List</a>
+        </li>
+        <li ng-hide="loggedIn" >
+          <a ui-sref="login">Login</a>
+        </li>
+        <li ng-show="loggedIn"  ng-click="logout(); ">
+          <a ui-sref="login">Logout</a>
+        </li>
+      </ul>
+    </nav>
+    <header class="jumbotron header">
+      <h1>WELCOME TO JOBSTER </h1>
+      <h3>Let's submit some apps!</h3>
+    </header>
 
 
-  <section>
-    <div ui-view ></div>
-  </section>
+    <section>
+      <div ui-view ></div>
+    </section>
+  </div>
+  <footer class="site-footer">
+    <div class="footer-content-wrapper">
+      <p>&copy;2017 Kent Moreland developer services</p>
+    </div>
+  </footer>
 
   <script src="libs/angular/angular.min.js"></script>
   <script src="libs/angular-ui-router/release/angular-ui-router.min.js"></script>
