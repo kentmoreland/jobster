@@ -106,3 +106,12 @@ input .ng-invalid.ng-dirty{
   color: #999;
 }
 
+
+.job-list-wrapper{
+  padding:0 2em;
+  text-align: center;
+}
+
+.table-titles th{
+  text-align: center;
+}
