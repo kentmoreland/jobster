@@ -6,12 +6,12 @@ angular.module('jobster.login', [])
     email: '',
     password: '',
   };
-    
+
   s.onSubmit  = () => {
     authentication
       .login(s.credentials)
       .error((err) => {
-        alert(err);
+        s.invalidLogin = true;
       })
       .then(() => {
         $location.path('jobs');

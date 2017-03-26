@@ -48,6 +48,9 @@ footer{
   color: red;
   font-size: 2em;
 }
+.error-login{
+  color: red;
+}
 
 .form{
   margin-bottom: 2em;
