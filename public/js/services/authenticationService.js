@@ -11,7 +11,6 @@ jobster.service('authentication', ['$rootScope','$http', '$window', function ($r
   logout = () => {
     $rootScope.loggedIn = false;
     $window.localStorage.removeItem('mean-token');
-
   };
 
   isLoggedIn = () => {
