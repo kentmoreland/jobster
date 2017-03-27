@@ -10,12 +10,11 @@ angular.module('jobster.login', [])
   s.onSubmit  = () => {
     authentication
       .login(s.credentials)
-      .error((err) => {
-        s.invalidLogin = true;
-      })
       .then(() => {
         $location.path('jobs');
-      });
+      }).catch((err) => {
+        s.invalidLogin = true;
+      })
   };
 
 }]);

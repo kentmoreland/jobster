@@ -54,10 +54,11 @@ jobster.controller('formController', ['$scope', '$http','$state', 'authenticatio
         status: s.status,
       },
     })
-    .success(() => {
+    .then((data) => {
       s.submitSuccess = true;
     })
-    .error(() => {
+    .catch((err) => {
+      console.log(err);
     });
   };
 }]);
@@ -105,8 +106,8 @@ jobster.factory('jobData', ($http, authentication) => {
 jobster.controller('jobDisplayController', ['$scope', 'jobData', ($scope, jobData) => {
   const s = $scope;
   jobData.getUserJobs()
-    .success((data) => {
-      s.jobs = data;
+    .then((response) => {
+      s.jobs = response.data;
     });
   s.storeId = (id) => {
     jobData.storeId(id);
@@ -118,8 +119,8 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
   const id = jobData.getId();
   const getJobDetails = (jid) => {
     jobData.getJob(jid)
-    .success((response) => {
-      s.jobDetails = response;
+    .then((response) => {
+      s.jobDetails = response.data;
     });
   };
   getJobDetails(id);
@@ -150,7 +151,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
         description: s.description,
       },
     })
-      .success(() => {
+      .then(() => {
         getJobDetails(id);
       });
   };
@@ -168,7 +169,7 @@ jobster.controller('jobDetailsController', ['$scope','$http', 'jobData', 'authen
         Authorization: 'Bearer '+ authentication.getToken()
       }
     })
-    .success(() => {
+    .then(() => {
       jobDeleted();
     });
   };

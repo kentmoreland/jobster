@@ -47,15 +47,15 @@ jobster.service('authentication', ['$rootScope','$http', '$window', function ($r
   register = (user) => {
     $rootScope.loggedIn = true;
     return $http.post('/api/register', user)
-    .success((data) => {
+    .then((data) => {
       saveToken(data.token);
     });
   };
 
   login = (user) => {
     return $http.post('/api/login', user)
-    .success((data) => {
-      saveToken(data.token);
+    .then((returnObject) => {
+      saveToken(returnObject.data.token);
       $rootScope.loggedIn = true;
     });
   };
