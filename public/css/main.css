@@ -15,6 +15,40 @@ body{
 .header {
   text-align: center;
   margin-bottom: 0;
+  background-image: url(../img/header_background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.home-header {
+  text-align: center;
+  margin-bottom: 0;
+  background-image: url(../img/header_background.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 525px;
+}
+
+.header-add,
+.header-remove {
+  transition: 1s linear all;
+  opacity: 0;
+}
+
+.header-add-active,
+.header-remove-active {
+  opacity: 1;
+}
+
+.home-header-add,
+.home-header-remove {
+  transition: 1s;
+  opacity: 0;
+}
+
+.home-header-add-active,
+.home-header-remove-active {
+  opacity: 1;
 }
 
 footer{
@@ -142,3 +176,13 @@ input .ng-invalid.ng-dirty{
 .table-titles th{
   text-align: center;
 }
+
+.ng-enter {
+  transition: 1s;
+  opacity: 0;
+}
+
+.ng-enter-active {
+  opacity: 1;
+}
+

@@ -7,6 +7,9 @@
     "animate.css": "latest",
     "angular": "latest",
     "angular-route": "latest",
-    "angular-ui-router": "ui-router#^0.3.1"
+    "angular-ui-router": "^0.4.2"
+  },
+  "resolutions": {
+    "angular": "^1.0.8"
   }
 }

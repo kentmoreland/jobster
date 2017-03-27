@@ -1,10 +1,10 @@
-const routerApp = angular.module('jobster.router', ['ui.router']);
+const routerApp = angular.module('jobster.router', ['ui.router', 'ngAnimate']);
 routerApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', ($stateProvider, $urlRouterProvider, $locationProvider) => {
   $urlRouterProvider.otherwise('/');
   $stateProvider
   .state('/', {
-    url: '/home',
-    templateUrl: 'views/register.html',
+    url: '/',
+    home: 'true'
   })
   .state('form', {
     url: '/form',
@@ -35,6 +35,11 @@ routerApp.config(['$stateProvider', '$urlRouterProvider', '$locationProvider', (
 
 routerApp.run(['$rootScope', '$state', 'authentication', ($rootScope, $state, authentication) => {
   $rootScope.$on('$stateChangeStart', (event, toState, toParams) => {
+    if(toState.home) {
+      $rootScope.headerClass = 'home-header';
+    } else {
+      $rootScope.headerClass = '';
+    }
     if (toState.test && !authentication.isLoggedIn()){
       event.preventDefault();
       $state.go('login');
