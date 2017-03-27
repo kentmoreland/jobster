@@ -16,6 +16,7 @@ body{
   text-align: center;
   margin-bottom: 0;
   background-image: url(../img/header_background.jpg);
+  background-color: rgba(0,0,0,.5);
   background-blend-mode: multiply;
   background-repeat: no-repeat;
   background-size: cover;
@@ -29,8 +30,8 @@ body{
   background-image: url(../img/header_background.jpg);
   background-repeat: no-repeat;
   background-size: cover;
-  color: #323b58;
-  height: 525px;
+  color: #495376;
+  height: 720px;
 }
 
 .header-add,
