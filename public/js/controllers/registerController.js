@@ -9,11 +9,11 @@ angular.module('jobster.register', [])
   s.onSubmit = () => {
     authentication
     .register(s.credentials)
-    .error((err) => {
-      alert(err);
-    })
     .then(() => {
       $location.path('jobs');
-    });
+    })
+    .catch((err) => {
+      s.invalidRegistration = true;
+    })
   };
 }]);
